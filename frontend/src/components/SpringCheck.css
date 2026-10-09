@@ -1,0 +1,122 @@
+.spring-check {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+
+  width: 100%;
+
+  padding: 8px 0;
+
+  border: 0;
+  background: transparent;
+
+  color: var(--text-color);
+
+  text-align: left;
+
+  cursor: pointer;
+
+  transition:
+    opacity 250ms ease,
+    transform 220ms ease;
+}
+
+.spring-check:hover {
+  transform: translateX(2px);
+}
+
+.spring-check:disabled {
+  cursor: default;
+}
+
+.spring-box {
+  width: var(--box-size);
+  height: var(--box-size);
+
+  flex: 0 0 var(--box-size);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid #52525b;
+  border-radius: var(--box-radius);
+
+  background: transparent;
+
+  transition:
+    background 220ms cubic-bezier(.2,.9,.25,1),
+    border-color 220ms ease,
+    transform 300ms cubic-bezier(.2,1.5,.4,1);
+}
+
+.spring-icon {
+  width: 70%;
+  height: 70%;
+
+  color: var(--check-color);
+
+  opacity: 0;
+
+  transform:
+    scale(0.3)
+    rotate(-12deg);
+
+  transition:
+    opacity 150ms ease,
+    transform 300ms cubic-bezier(.2,1.6,.4,1);
+}
+
+.spring-label {
+  position: relative;
+
+  font-size: var(--font-size);
+  font-weight: 500;
+
+  line-height: 1.35;
+
+  transition:
+    opacity 220ms ease;
+}
+
+.spring-label::after {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  top: 50%;
+
+  width: 0;
+  height: 1px;
+
+  background: currentColor;
+
+  transition:
+    width 350ms cubic-bezier(.2,.8,.2,1)
+    var(--strike-delay);
+}
+
+.spring-check.checked {
+  opacity: var(--done-opacity);
+}
+
+.spring-check.checked .spring-box {
+  background: var(--box-fill);
+  border-color: var(--box-fill);
+
+  transform:
+    scale(calc(1 + var(--bounce)));
+}
+
+.spring-check.checked .spring-icon {
+  opacity: 1;
+
+  transform:
+    scale(1)
+    rotate(0);
+}
+
+.spring-check.checked .spring-label::after {
+  width: 100%;
+}

@@ -1,0 +1,1061 @@
+/* =========================================================
+   LEARNING PAGE
+   ========================================================= */
+
+.learning-page {
+  padding: 28px 32px 48px;
+  max-width: 1400px;
+  margin: 0 auto;
+  color: #1f2937;
+}
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.learning-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 28px;
+}
+
+.learning-header h1 {
+  margin: 0;
+  color: #111827;
+
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.learning-header p {
+  margin: 7px 0 0;
+
+  color: #6b7280;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* =========================================================
+   ERROR
+   ========================================================= */
+
+.learning-error {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+
+  padding: 12px 15px;
+  margin-bottom: 20px;
+
+  border: 1px solid #fecaca;
+  border-radius: 10px;
+
+  background: #fef2f2;
+  color: #b91c1c;
+
+  font-size: 13px;
+}
+
+.learning-error button {
+  border: none;
+  background: transparent;
+
+  color: inherit;
+  font-size: 20px;
+
+  cursor: pointer;
+}
+
+/* =========================================================
+   PROGRESS CARDS
+   ========================================================= */
+
+.learning-progress-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.learning-stat-card {
+  min-height: 126px;
+
+  padding: 20px;
+
+  background: #ffffff;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.learning-stat-card:hover {
+  transform: translateY(-2px);
+
+  border-color: #d1d5db;
+
+  box-shadow: 0 7px 20px rgba(15, 23, 42, 0.07);
+}
+
+.stat-label {
+  display: block;
+
+  margin-bottom: 11px;
+
+  color: #6b7280;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  text-transform: uppercase;
+  letter-spacing: 0.45px;
+}
+
+.learning-stat-card strong {
+  display: block;
+
+  color: #111827;
+
+  font-size: 28px;
+  font-weight: 700;
+
+  letter-spacing: -0.6px;
+}
+
+.learning-stat-card strong small {
+  color: #9ca3af;
+
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.stat-subtext {
+  display: block;
+
+  margin-top: 6px;
+
+  color: #9ca3af;
+  font-size: 12px;
+}
+
+/* =========================================================
+   PROGRESS BAR
+   ========================================================= */
+
+.progress-bar {
+  width: 100%;
+  height: 6px;
+
+  margin-top: 13px;
+
+  overflow: hidden;
+
+  border-radius: 99px;
+
+  background: #eef2f7;
+}
+
+.progress-fill {
+  height: 100%;
+
+  border-radius: inherit;
+
+  background: #4f46e5;
+
+  transition: width 0.5s ease;
+}
+
+.progress-bar.large {
+  height: 8px;
+}
+
+/* =========================================================
+   LEARNING VIEW SWITCHER
+   Dashboard-style segmented control
+   ========================================================= */
+
+.learning-tabs {
+  display: flex;
+  align-items: center;
+
+  gap: 2px;
+
+  width: fit-content;
+
+  padding: 3px;
+
+  margin-bottom: 22px;
+
+  background: #f5f5f7;
+
+  border: 1px solid #e5e5e7;
+
+  border-radius: 9px;
+}
+
+.learning-tabs button {
+  position: relative;
+
+  border: none;
+
+  border-radius: 7px;
+
+  padding: 7px 14px;
+
+  background: transparent;
+
+  color: #777;
+
+  font-family: inherit;
+
+  font-size: 12px;
+  font-weight: 500;
+
+  white-space: nowrap;
+
+  cursor: pointer;
+
+  transition:
+    color 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.15s ease;
+}
+
+.learning-tabs button:hover {
+  color: #333;
+}
+
+.learning-tabs button.active {
+  background: #ffffff;
+
+  color: #111;
+
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.learning-tabs button:active {
+  transform: scale(0.98);
+}
+
+/* =========================================================
+   MAIN SECTIONS
+   ========================================================= */
+
+.learning-section {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 18px;
+}
+
+.learning-form-card,
+.learning-list-card {
+  background: #ffffff;
+
+  border: 1px solid #e5e7eb;
+
+  border-radius: 14px;
+
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.035);
+}
+
+.learning-form-card {
+  padding: 22px;
+}
+
+.learning-list-card {
+  padding: 22px;
+}
+
+.learning-form-card h2,
+.learning-list-card h2 {
+  margin: 0;
+
+  color: #111827;
+
+  font-size: 17px;
+  font-weight: 650;
+}
+
+.form-description {
+  margin: 6px 0 20px;
+
+  color: #6b7280;
+
+  font-size: 13px;
+}
+
+/* =========================================================
+   SECTION HEADING
+   ========================================================= */
+
+.section-heading {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 18px;
+}
+
+.section-heading h2 {
+  margin: 0;
+}
+
+.section-heading p {
+  margin: 5px 0 0;
+
+  color: #9ca3af;
+
+  font-size: 12px;
+}
+
+/* =========================================================
+   FORMS
+   ========================================================= */
+
+.form-row {
+  display: flex;
+
+  gap: 14px;
+
+  margin-bottom: 15px;
+}
+
+.form-field {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 6px;
+
+  flex: 1;
+}
+
+.form-field.form-wide {
+  flex: 2;
+}
+
+.form-field label {
+  color: #4b5563;
+
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.form-field input,
+.form-field select,
+.form-field textarea {
+  width: 100%;
+
+  box-sizing: border-box;
+
+  border: 1px solid #dfe3e8;
+
+  border-radius: 8px;
+
+  padding: 10px 11px;
+
+  background: #ffffff;
+
+  color: #111827;
+
+  font-family: inherit;
+
+  font-size: 13px;
+
+  outline: none;
+
+  transition:
+    border-color 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+.form-field textarea {
+  resize: vertical;
+
+  line-height: 1.5;
+}
+
+.form-field input::placeholder,
+.form-field textarea::placeholder {
+  color: #b0b7c3;
+}
+
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus {
+  border-color: #818cf8;
+
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.09);
+}
+
+/* =========================================================
+   PRIMARY BUTTON
+   ========================================================= */
+
+.primary-button {
+  border: none;
+
+  border-radius: 8px;
+
+  padding: 10px 16px;
+
+  background: #4f46e5;
+
+  color: #ffffff;
+
+  font-family: inherit;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background 0.18s ease,
+    transform 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+.primary-button:hover:not(:disabled) {
+  background: #4338ca;
+
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.2);
+
+  transform: translateY(-1px);
+}
+
+.primary-button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.primary-button:disabled {
+  opacity: 0.6;
+
+  cursor: not-allowed;
+}
+
+/* =========================================================
+   LEARNING TASK LIST
+   ========================================================= */
+
+.learning-task-list {
+  display: flex;
+
+  flex-direction: column;
+}
+
+.learning-task {
+  display: grid;
+
+  grid-template-columns:
+    32px
+    minmax(0, 1fr)
+    auto
+    auto
+    28px;
+
+  align-items: center;
+
+  gap: 13px;
+
+  padding: 14px 4px;
+
+  border-bottom: 1px solid #f0f1f3;
+
+  transition:
+    background 0.18s ease,
+    opacity 0.2s ease;
+}
+
+.learning-task:last-child {
+  border-bottom: none;
+}
+
+.learning-task:hover {
+  background: #fafafa;
+}
+
+.task-check {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+}
+
+.task-check input {
+  width: 17px;
+  height: 17px;
+
+  margin: 0;
+
+  accent-color: #4f46e5;
+
+  cursor: pointer;
+}
+
+.task-main {
+  min-width: 0;
+}
+
+.task-main h3 {
+  margin: 0;
+
+  color: #1f2937;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  white-space: nowrap;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+
+  transition: color 0.18s ease;
+}
+
+.task-meta {
+  display: flex;
+
+  align-items: center;
+
+  flex-wrap: wrap;
+
+  gap: 10px;
+
+  margin-top: 5px;
+
+  color: #9ca3af;
+
+  font-size: 11px;
+}
+
+.task-completed {
+  opacity: 0.62;
+}
+
+.task-completed .task-main h3 {
+  color: #9ca3af;
+
+  text-decoration: line-through;
+}
+
+/* =========================================================
+   PRIORITY BADGES
+   ========================================================= */
+
+.priority {
+  padding: 4px 8px;
+
+  border-radius: 99px;
+
+  font-size: 10px;
+  font-weight: 700;
+
+  text-transform: capitalize;
+}
+
+.priority-low {
+  background: #f3f4f6;
+
+  color: #6b7280;
+}
+
+.priority-medium {
+  background: #eef2ff;
+
+  color: #4f46e5;
+}
+
+.priority-high {
+  background: #fef2f2;
+
+  color: #dc2626;
+}
+
+/* =========================================================
+   STATUS
+   ========================================================= */
+
+.status-select {
+  min-width: 112px;
+
+  padding: 7px 9px;
+
+  border: 1px solid #e5e7eb;
+
+  border-radius: 7px;
+
+  background: #ffffff;
+
+  color: #4b5563;
+
+  font-family: inherit;
+
+  font-size: 11px;
+
+  cursor: pointer;
+
+  outline: none;
+}
+
+.status-select:focus {
+  border-color: #818cf8;
+}
+
+/* =========================================================
+   DELETE BUTTON
+   ========================================================= */
+
+.delete-button {
+  width: 26px;
+  height: 26px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border: none;
+
+  border-radius: 6px;
+
+  background: transparent;
+
+  color: #9ca3af;
+
+  font-size: 18px;
+
+  line-height: 1;
+
+  cursor: pointer;
+
+  transition:
+    background 0.18s ease,
+    color 0.18s ease;
+}
+
+.delete-button:hover {
+  background: #fef2f2;
+
+  color: #dc2626;
+}
+
+/* =========================================================
+   EMPTY STATE
+   ========================================================= */
+
+.empty-state {
+  padding: 45px 20px;
+
+  text-align: center;
+}
+
+.empty-icon {
+  margin-bottom: 12px;
+
+  font-size: 28px;
+
+  opacity: 0.8;
+}
+
+.empty-state h3 {
+  margin: 0 0 6px;
+
+  color: #374151;
+
+  font-size: 14px;
+
+  font-weight: 600;
+}
+
+.empty-state p {
+  margin: 0;
+
+  color: #9ca3af;
+
+  font-size: 12px;
+}
+
+/* =========================================================
+   DIARY
+   ========================================================= */
+
+.diary-list {
+  display: flex;
+
+  flex-direction: column;
+}
+
+.diary-entry {
+  position: relative;
+
+  display: grid;
+
+  grid-template-columns:
+    150px
+    minmax(0, 1fr)
+    28px;
+
+  gap: 22px;
+
+  padding: 20px 4px;
+
+  border-bottom: 1px solid #f0f1f3;
+}
+
+.diary-entry:last-child {
+  border-bottom: none;
+}
+
+.diary-date {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 5px;
+}
+
+.diary-date strong {
+  color: #374151;
+
+  font-size: 13px;
+}
+
+.diary-date span {
+  color: #9ca3af;
+
+  font-size: 11px;
+}
+
+.diary-content {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 12px;
+}
+
+.diary-content strong {
+  color: #6b7280;
+
+  font-size: 11px;
+
+  font-weight: 700;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.3px;
+}
+
+.diary-content p {
+  margin: 4px 0 0;
+
+  color: #374151;
+
+  font-size: 13px;
+
+  line-height: 1.55;
+}
+
+/* =========================================================
+   SUBJECT PROGRESS
+   ========================================================= */
+
+.subject-progress-list {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 20px;
+}
+
+.subject-progress {
+  padding-bottom: 18px;
+
+  border-bottom: 1px solid #f0f1f3;
+}
+
+.subject-progress:last-child {
+  border-bottom: none;
+
+  padding-bottom: 0;
+}
+
+.subject-header {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  margin-bottom: 8px;
+}
+
+.subject-header strong {
+  color: #374151;
+
+  font-size: 13px;
+}
+
+.subject-header span {
+  color: #9ca3af;
+
+  font-size: 11px;
+}
+
+.subject-percent {
+  display: block;
+
+  margin-top: 6px;
+
+  color: #9ca3af;
+
+  font-size: 11px;
+}
+
+/* =========================================================
+   DIARY PROGRESS
+   ========================================================= */
+
+.diary-progress-list {
+  display: flex;
+
+  flex-direction: column;
+}
+
+.diary-progress-item {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 20px;
+
+  padding: 13px 4px;
+
+  border-bottom: 1px solid #f0f1f3;
+}
+
+.diary-progress-item:last-child {
+  border-bottom: none;
+}
+
+.diary-progress-item strong {
+  color: #374151;
+
+  font-size: 13px;
+}
+
+.diary-progress-item p {
+  margin: 4px 0 0;
+
+  max-width: 700px;
+
+  color: #9ca3af;
+
+  font-size: 11px;
+
+  white-space: nowrap;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+}
+
+.diary-progress-item > strong:last-child {
+  color: #4f46e5;
+}
+
+/* =========================================================
+   LOADING
+   ========================================================= */
+
+.learning-loading {
+  min-height: 400px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  color: #9ca3af;
+
+  font-size: 13px;
+}
+
+/* =========================================================
+   RESPONSIVE — TABLET
+   ========================================================= */
+
+@media (max-width: 1100px) {
+  .learning-progress-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* =========================================================
+   RESPONSIVE — SMALL TABLET
+   ========================================================= */
+
+@media (max-width: 800px) {
+  .learning-page {
+    padding: 22px 18px 40px;
+  }
+
+  .learning-task {
+    grid-template-columns:
+      30px
+      minmax(0, 1fr)
+      auto
+      28px;
+  }
+
+  .learning-task .status-select {
+    display: none;
+  }
+
+  .form-row {
+    flex-direction: column;
+  }
+
+  .diary-entry {
+    grid-template-columns:
+      1fr
+      28px;
+  }
+
+  .diary-date {
+    grid-column: 1 / -1;
+  }
+}
+
+/* =========================================================
+   RESPONSIVE — MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+  .learning-page {
+    padding: 18px 14px 35px;
+  }
+
+  .learning-header {
+    margin-bottom: 22px;
+  }
+
+  .learning-header h1 {
+    font-size: 26px;
+  }
+
+  .learning-header p {
+    font-size: 13px;
+  }
+
+  /* Progress cards */
+
+  .learning-progress-grid {
+    grid-template-columns: 1fr;
+
+    gap: 12px;
+
+    margin-bottom: 22px;
+  }
+
+  /* Dashboard-style segmented switcher */
+
+  .learning-tabs {
+    width: 100%;
+
+    overflow-x: auto;
+
+    scrollbar-width: none;
+
+    margin-bottom: 18px;
+  }
+
+  .learning-tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .learning-tabs button {
+    flex: 1;
+
+    min-width: max-content;
+
+    white-space: nowrap;
+  }
+
+  /* Cards */
+
+  .learning-form-card,
+  .learning-list-card {
+    padding: 17px;
+
+    border-radius: 12px;
+  }
+
+  /* Tasks */
+
+  .learning-task {
+    grid-template-columns:
+      28px
+      minmax(0, 1fr)
+      26px;
+
+    gap: 10px;
+
+    padding: 13px 2px;
+  }
+
+  .learning-task .priority {
+    display: none;
+  }
+
+  /* Diary */
+
+  .diary-entry {
+    grid-template-columns:
+      1fr
+      28px;
+
+    gap: 14px;
+
+    padding: 17px 2px;
+  }
+
+  /* Subject progress */
+
+  .subject-progress-list {
+    gap: 17px;
+  }
+
+  /* Forms */
+
+  .form-row {
+    gap: 12px;
+
+    margin-bottom: 12px;
+  }
+
+  .form-field input,
+  .form-field select,
+  .form-field textarea {
+    font-size: 13px;
+  }
+}

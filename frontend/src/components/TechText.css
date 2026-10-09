@@ -1,0 +1,115 @@
+.tech-text {
+  --tech-outline: rgba(255, 255, 255, 0.45);
+  --tech-glow: rgba(148, 163, 184, 0.3);
+  position: relative;
+  display: inline-block;
+  line-height: 0.85;
+  white-space: nowrap;
+  font-family: "SF Pro Display", "Segoe UI", sans-serif;
+  letter-spacing: var(--tech-letter-spacing, -0.05em);
+  filter: drop-shadow(0 18px 22px rgba(15, 23, 42, 0.12));
+  user-select: none;
+}
+
+.tech-text::before {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  color: transparent;
+  -webkit-text-stroke: var(--tech-stroke-width, 1.5px) rgba(15, 23, 42, 0.82);
+  opacity: 0.75;
+  z-index: -2;
+  pointer-events: none;
+}
+
+.tech-text::after {
+  content: "";
+  position: absolute;
+  inset: 10% 4% auto 4%;
+  height: 60%;
+  background: linear-gradient(
+    130deg,
+    rgba(255, 255, 255, 0.06),
+    rgba(255, 255, 255, 0.45),
+    rgba(255, 255, 255, 0.08)
+  );
+  transform: translateX(-110%) skewX(-22deg);
+  filter: blur(18px);
+  opacity: 0.8;
+  animation: tech-sweep calc(2.8s / var(--tech-speed, 1)) ease-in-out infinite;
+  pointer-events: none;
+}
+
+.tech-text-char {
+  position: relative;
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(18px) scale(0.92);
+  background: linear-gradient(180deg, rgba(255,255,255,0.98) 0%, var(--tech-accent, #d4d4d8) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-stroke: 0.2px rgba(255, 255, 255, 0.15);
+  animation: tech-reveal calc(0.8s / var(--tech-speed, 1)) cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+.tech-text-specks {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.tech-text-speck {
+  position: absolute;
+  display: block;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.45);
+  opacity: 0;
+  animation: tech-speck-float calc(1.5s / var(--tech-speed, 1)) ease-in-out infinite alternate;
+}
+
+@keyframes tech-reveal {
+  0% {
+    opacity: 0;
+    transform: translateY(18px) scale(0.92);
+    filter: blur(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes tech-sweep {
+  0% {
+    transform: translateX(-110%) skewX(-22deg);
+    opacity: 0;
+  }
+  18% {
+    opacity: 0.9;
+  }
+  45% {
+    transform: translateX(140%) skewX(-22deg);
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateX(140%) skewX(-22deg);
+    opacity: 0;
+  }
+}
+
+@keyframes tech-speck-float {
+  0% {
+    opacity: 0;
+    transform: scale(0.7);
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.35;
+    transform: scale(1.3);
+  }
+}

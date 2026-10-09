@@ -1,0 +1,8 @@
+__pycache__
+.venv
+.git
+.env
+*.pyc
+*.pyo
+*.pyd
+student_organizer.db
