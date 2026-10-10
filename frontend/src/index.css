@@ -1,44 +1,63 @@
 :root {
-  --bg: #f4f1ea;
-  --bg-strong: #efe9e1;
-  --panel: rgba(255, 255, 255, 0.82);
-  --panel-strong: #f8f6f2;
-  --surface: #f5f4f0;
-  --surface-strong: #ffffff;
-  --surface-muted: #eae2d6;
-  --ink: #1f2937;
-  --ink-strong: #111827;
-  --ink-soft: #374151;
-  --ink-muted: #6b7280;
+  --color-bg: #1f2229;
+  --color-surface: #191b22;
+  --color-surface-elevated: #292c35;
+  --color-sidebar: #191b22;
+  --color-text: #f5f5f7;
+  --color-text-muted: #a7abb8;
+  --color-border: #3a3d47;
+  --color-primary: #8170f5;
+  --color-primary-hover: #9688ff;
+  --color-secondary: #30343e;
+  --color-success: #72c69a;
+  --color-warning: #f0b968;
+  --color-danger: #f07878;
+  --color-input-bg: #2b3039;
+  --color-chart-1: #8170f5;
+  --color-chart-2: #9688ff;
+  --color-chart-3: #72c69a;
+  --color-chart-4: #f0b968;
+
+  --bg: var(--color-bg);
+  --bg-strong: #1a1d24;
+  --panel: rgba(25, 27, 34, 0.9);
+  --panel-strong: #191b22;
+  --surface: var(--color-surface);
+  --surface-strong: var(--color-surface-elevated);
+  --surface-muted: #2a2f38;
+  --ink: var(--color-text);
+  --ink-strong: #ffffff;
+  --ink-soft: #dfe3f0;
+  --ink-muted: var(--color-text-muted);
   --muted: var(--ink-muted);
-  --border: rgba(15, 23, 42, 0.12);
-  --border-strong: rgba(15, 23, 42, 0.2);
-  --card-surface: #f8f6f2;
-  --card-alt: #f0ede7;
-  --control-surface: #f5f4f0;
-  --segment-track: #e5e1d9;
-  --segment-thumb: #ffffff;
-  --sidebar: #171b1a;
-  --sidebar-alt: #1f2927;
+  --border: var(--color-border);
+  --border-strong: rgba(167, 171, 184, 0.25);
+  --card-surface: var(--color-surface-elevated);
+  --card-alt: #30343e;
+  --control-surface: var(--color-input-bg);
+  --segment-track: #3a3d47;
+  --segment-thumb: #b9c0ce;
+  --sidebar: var(--color-sidebar);
+  --sidebar-alt: #1f242d;
   --brand: #eef2ff;
   --brand-accent: #a5b4fc;
-  --accent: #4f46e5;
-  --accent-strong: #312e81;
-  --success: #166534;
-  --error: #b91c1c;
-  --warning: #854d0e;
-  --danger-surface: rgba(185, 28, 28, 0.08);
-  --warning-surface: rgba(161, 98, 7, 0.1);
-  --success-surface: rgba(22, 101, 52, 0.08);
-  --shadow: 0 26px 60px rgba(17, 24, 39, 0.12);
-  --page-glow-a: rgba(99, 102, 241, 0.12);
-  --page-glow-b: rgba(59, 130, 246, 0.08);
-  --auth-shell: linear-gradient(135deg, #f4f1ea 0%, #eef2ff 100%);
-  --auth-card: rgba(255, 255, 255, 0.78);
-  --field-bg: rgba(255, 255, 255, 0.72);
-  --button-primary: linear-gradient(135deg, #0f172a, #334155);
+  --accent: var(--color-primary);
+  --accent-strong: var(--color-primary-hover);
+  --success: var(--color-success);
+  --error: var(--color-danger);
+  --warning: var(--color-warning);
+  --danger-surface: rgba(240, 120, 120, 0.15);
+  --warning-surface: rgba(240, 185, 104, 0.14);
+  --success-surface: rgba(114, 198, 154, 0.14);
+  --shadow: 0 26px 60px rgba(0, 0, 0, 0.28);
+  --page-glow-a: rgba(129, 112, 245, 0.18);
+  --page-glow-b: rgba(150, 136, 255, 0.08);
+  --auth-shell: radial-gradient(circle at top, rgba(129, 112, 245, 0.24), transparent 22%), #1f2229;
+  --auth-card: rgba(41, 44, 53, 0.92);
+  --field-bg: rgba(43, 48, 57, 0.72);
+  --button-primary: linear-gradient(135deg, var(--color-primary), var(--color-primary-hover));
   --button-text: #f8fafc;
-  --link: #1d4ed8;
+  --link: #b5aef7;
 
   font-family:
     Inter,
@@ -49,13 +68,135 @@
     "Segoe UI",
     sans-serif;
 
-  color: var(--ink);
-  background: var(--bg);
+  color: var(--color-text);
+  background: var(--color-bg);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+:root[data-theme="ruby-leaf"] {
+  --color-bg: #111c1a;
+  --color-surface: #1a2a29;
+  --color-surface-elevated: #23332f;
+  --color-sidebar: #162421;
+  --color-text: #f7f3ee;
+  --color-text-muted: #c5c8be;
+  --color-border: #4b6458;
+  --color-primary: #852e47;
+  --color-primary-hover: #a53f5b;
+  --color-secondary: #0d244d;
+  --color-success: #4a5a2b;
+  --color-warning: #c2441c;
+  --color-danger: #d46645;
+  --color-input-bg: #1d2f2d;
+  --color-chart-1: #852e47;
+  --color-chart-2: #0d244d;
+  --color-chart-3: #4a5a2b;
+  --color-chart-4: #c2441c;
+  --bg: var(--color-bg);
+  --bg-strong: #12211f;
+  --panel: rgba(20, 31, 28, 0.9);
+  --panel-strong: #172822;
+  --surface: var(--color-surface);
+  --surface-strong: var(--color-surface-elevated);
+  --surface-muted: #213632;
+  --ink: var(--color-text);
+  --ink-strong: #ffffff;
+  --ink-soft: #f3ebdf;
+  --ink-muted: var(--color-text-muted);
+  --muted: var(--ink-muted);
+  --border: var(--color-border);
+  --border-strong: rgba(197, 200, 190, 0.2);
+  --card-surface: var(--color-surface-elevated);
+  --card-alt: #2c3d37;
+  --control-surface: var(--color-input-bg);
+  --segment-track: #2c3d37;
+  --segment-thumb: #d9d2c2;
+  --sidebar: var(--color-sidebar);
+  --sidebar-alt: #1b3733;
+  --brand: #f7f3ee;
+  --brand-accent: #d8bda0;
+  --accent: var(--color-primary);
+  --accent-strong: var(--color-primary-hover);
+  --success: var(--color-success);
+  --error: var(--color-danger);
+  --warning: var(--color-warning);
+  --danger-surface: rgba(212, 102, 69, 0.15);
+  --warning-surface: rgba(194, 68, 28, 0.15);
+  --success-surface: rgba(74, 90, 43, 0.15);
+  --shadow: 0 26px 60px rgba(7, 14, 11, 0.28);
+  --page-glow-a: rgba(133, 46, 71, 0.18);
+  --page-glow-b: rgba(13, 36, 77, 0.12);
+  --auth-shell: radial-gradient(circle at top, rgba(133, 46, 71, 0.2), transparent 22%), #111c1a;
+  --auth-card: rgba(27, 46, 42, 0.9);
+  --field-bg: rgba(29, 47, 45, 0.72);
+  --button-primary: linear-gradient(135deg, var(--color-primary), #b75d70);
+  --button-text: #fff6f8;
+  --link: #f0bfad;
+}
+
+:root[data-theme="deep-forest"] {
+  --color-bg: #241a23;
+  --color-surface: #2d202c;
+  --color-surface-elevated: #3b2938;
+  --color-sidebar: #201720;
+  --color-text: #fff1f7;
+  --color-text-muted: #d8b9ca;
+  --color-border: #67465b;
+  --color-primary: #d95794;
+  --color-primary-hover: #ef79ad;
+  --color-secondary: #f5a6c8;
+  --color-success: #91b99a;
+  --color-warning: #f0bd6a;
+  --color-danger: #ef7e8c;
+  --color-input-bg: #342432;
+  --color-chart-1: #d95794;
+  --color-chart-2: #f5a6c8;
+  --color-chart-3: #b67eae;
+  --color-chart-4: #ef9b79;
+  --bg: var(--color-bg);
+  --bg-strong: #1d141d;
+  --panel: rgba(38, 27, 37, 0.92);
+  --panel-strong: #2a1d29;
+  --surface: var(--color-surface);
+  --surface-strong: var(--color-surface-elevated);
+  --surface-muted: #493246;
+  --ink: var(--color-text);
+  --ink-strong: #fff8fb;
+  --ink-soft: #f9e6ef;
+  --ink-muted: var(--color-text-muted);
+  --muted: var(--ink-muted);
+  --border: var(--color-border);
+  --border-strong: rgba(245, 166, 200, 0.28);
+  --card-surface: var(--color-surface-elevated);
+  --card-alt: #493246;
+  --control-surface: var(--color-input-bg);
+  --segment-track: #55374d;
+  --segment-thumb: #f5c4da;
+  --sidebar: var(--color-sidebar);
+  --sidebar-alt: #30212e;
+  --brand: #fff1f7;
+  --brand-accent: #f5a6c8;
+  --accent: var(--color-primary);
+  --accent-strong: var(--color-secondary);
+  --success: var(--color-success);
+  --error: var(--color-danger);
+  --warning: var(--color-warning);
+  --danger-surface: rgba(239, 126, 140, 0.17);
+  --warning-surface: rgba(240, 189, 106, 0.17);
+  --success-surface: rgba(145, 185, 154, 0.18);
+  --shadow: 0 26px 60px rgba(16, 7, 15, 0.36);
+  --page-glow-a: rgba(217, 87, 148, 0.18);
+  --page-glow-b: rgba(182, 126, 174, 0.1);
+  --auth-shell: radial-gradient(circle at top, rgba(217, 87, 148, 0.2), transparent 22%), #241a23;
+  --auth-card: rgba(59, 41, 56, 0.92);
+  --field-bg: rgba(52, 36, 50, 0.78);
+  --button-primary: linear-gradient(135deg, var(--color-primary), var(--color-primary-hover));
+  --button-text: #261621;
+  --link: #f5a6c8;
 }
 
 * {
@@ -81,46 +222,8 @@ body {
 
 body.dark-theme {
   color-scheme: dark;
-  --bg: #0b0b0c;
-  --bg-strong: #121720;
-  --panel: rgba(15, 23, 42, 0.9);
-  --panel-strong: #101827;
-  --surface: #111827;
-  --surface-strong: #172033;
-  --surface-muted: #1a2333;
-  --ink: #edf2ff;
-  --ink-strong: #f8fafc;
-  --ink-soft: #dfe9ff;
-  --ink-muted: #aab7d3;
-  --muted: var(--ink-muted);
-  --border: rgba(148, 163, 184, 0.18);
-  --border-strong: rgba(148, 163, 184, 0.28);
-  --card-surface: #141a24;
-  --card-alt: #1a2330;
-  --control-surface: #111827;
-  --segment-track: #263246;
-  --segment-thumb: #53647e;
-  --sidebar: #0f172a;
-  --sidebar-alt: #111c2e;
-  --brand: #dbeafe;
-  --brand-accent: #93c5fd;
-  --accent: #8b9bff;
-  --accent-strong: #c7d2fe;
-  --success: #4ade80;
-  --error: #fca5a5;
-  --warning: #fcd34d;
-  --danger-surface: rgba(248, 113, 113, 0.14);
-  --warning-surface: rgba(251, 191, 36, 0.14);
-  --success-surface: rgba(74, 222, 128, 0.12);
-  --page-glow-a: rgba(59, 130, 246, 0.16);
-  --page-glow-b: rgba(96, 165, 250, 0.06);
-  --auth-shell: radial-gradient(circle at top, rgba(59, 130, 246, 0.18), transparent 22%), #0b0b0c;
-  --auth-card: rgba(15, 23, 42, 0.92);
-  --field-bg: rgba(15, 23, 42, 0.72);
-  --button-primary: linear-gradient(135deg, #dbeafe, #bfdbfe);
-  --button-text: #0f172a;
-  --link: #93c5fd;
-  --shadow: 0 28px 60px rgba(2, 6, 23, 0.5);
+  background: var(--color-bg);
+  color: var(--color-text);
 }
 
 button,
@@ -170,9 +273,9 @@ a {
   padding: 24px 16px 18px;
 
   background: linear-gradient(180deg, var(--sidebar) 0%, var(--sidebar-alt) 100%);
-  color: #f4f1ea;
+  color: var(--color-text);
 
-  border-right: 1px solid rgba(255,255,255,0.06);
+  border-right: 1px solid var(--color-border);
 
   z-index: 20;
 }
@@ -225,7 +328,7 @@ a {
 }
 
 .sidebar-brand span {
-  color: #9aa3b2;
+  color: var(--color-text-muted);
   font-size: 10px;
 }
 
@@ -256,7 +359,7 @@ a {
 
   padding: 0 10px 8px;
 
-  color: #777a73;
+  color: var(--color-text-muted);
 
   font-size: 9px;
   font-weight: 700;
@@ -279,7 +382,7 @@ a {
 
   padding: 0 11px;
 
-  color: #aeb0a9;
+  color: var(--color-text-muted);
 
   border: 1px solid transparent;
   border-radius: 8px;
@@ -295,14 +398,14 @@ a {
 }
 
 .sidebar-link:hover {
-  color: #f4f1ea;
+  color: var(--color-text);
   background: rgba(255,255,255,0.04);
 
   transform: translateX(2px);
 }
 
 .sidebar-link.active {
-  color: #101827;
+  color: var(--color-bg);
   background: rgba(255,255,255,0.92);
   border-color: rgba(255,255,255,0.9);
 
@@ -344,10 +447,10 @@ a {
 
   flex: 0 0 32px;
 
-  border: 1px solid #484b45;
+  border: 1px solid var(--color-border);
   border-radius: 50%;
 
-  color: #dedfd9;
+  color: var(--color-text);
 
   font-size: 11px;
   font-weight: 700;
@@ -364,7 +467,7 @@ a {
 .sidebar-user-info strong {
   overflow: hidden;
 
-  color: #e5e5df;
+  color: var(--color-text);
 
   font-size: 11px;
   font-weight: 600;
@@ -393,7 +496,7 @@ a {
   border: 0;
   background: transparent;
 
-  color: #777a73;
+  color: var(--color-text-muted);
 
   text-align: left;
   font-size: 10px;
@@ -407,7 +510,7 @@ a {
 
 .sidebar-logout:hover {
   padding-left: 10px;
-  color: #d7d8d2;
+  color: var(--color-text);
 }
 
 /* --------------------------------
@@ -485,6 +588,11 @@ a {
   display: flex;
   justify-content: center;
   margin-bottom: 12px;
+}
+
+.auth-brand-text::after {
+  animation: none;
+  opacity: 0;
 }
 
 .auth-card h1 {

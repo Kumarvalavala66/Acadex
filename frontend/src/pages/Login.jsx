@@ -56,6 +56,7 @@ export default function Login() {
       <div className="auth-card">
         <div className="auth-brand-wrap">
           <TechText
+            className="auth-brand-text"
             text="Acadex"
             fontSize={110}
             fontWeight={700}
@@ -65,7 +66,6 @@ export default function Login() {
             strokeWidth={1.2}
             speed={1.15}
             specks={14}
-            sweep
           />
         </div>
 

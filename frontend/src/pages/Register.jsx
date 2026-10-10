@@ -44,6 +44,7 @@ export default function Register() {
         <div className="auth-heading">
           <div className="auth-mark">
             <TechText
+              className="auth-brand-text"
               text="Acadex"
               fontSize={52}
               fontWeight={700}
@@ -52,7 +53,6 @@ export default function Register() {
               strokeWidth={1.1}
               specks={10}
               speed={1.2}
-              sweep
             />
           </div>
 

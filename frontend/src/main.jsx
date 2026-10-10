@@ -4,11 +4,10 @@ import { BrowserRouter } from "react-router-dom";
 
 import App from "./App";
 import "./index.css";
+import { applyTheme, getStoredTheme } from "./theme";
 
-document.body.classList.toggle(
-  "dark-theme",
-  localStorage.getItem("dark_mode") === "true",
-);
+const initialTheme = getStoredTheme();
+applyTheme(initialTheme);
 document.body.classList.toggle(
   "compact-theme",
   localStorage.getItem("compact_mode") === "true",

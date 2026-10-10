@@ -10,6 +10,7 @@ import Board from "./pages/Board";
 import Calendar from "./pages/Calendar";
 import Exams from "./pages/Exams";
 import Learning from "./pages/Learning";
+import Achievements from "./pages/Achievements";
 import Settings from "./pages/Settings";
 
 function ProtectedLayout() {
@@ -58,6 +59,10 @@ function ProtectedLayout() {
           path: "/learning",
           label: "Learning",
         },
+        {
+          path: "/achievements",
+          label: "Achievements",
+        },
       ],
     },
   ];
@@ -80,8 +85,8 @@ function ProtectedLayout() {
               text="Acadex"
               fontSize={22}
               fontWeight={700}
-              color="#f4f1ea"
-              accentColor="#d4d4d8"
+              color="var(--color-text)"
+              accentColor="var(--color-text-muted)"
               letterSpacing={-0.05}
               strokeWidth={1}
               specks={6}
@@ -159,6 +164,8 @@ function ProtectedLayout() {
           <Route path="/exams" element={<Exams />} />
 
           <Route path="/learning" element={<Learning />} />
+
+          <Route path="/achievements" element={<Achievements />} />
 
           <Route
             path="/settings"

@@ -4,6 +4,7 @@ import {
   getProfile,
   updateProfile,
 } from "../services/api";
+import { applyTheme, getStoredTheme, THEMES } from "../theme";
 import "./Settings.css";
 
 const EMPTY_PASSWORD = {
@@ -33,9 +34,7 @@ export default function Settings({ user, onLogout }) {
   const [defaultLearningMinutes, setDefaultLearningMinutes] = useState(
     localStorage.getItem("default_learning_minutes") || "60"
   );
-  const [darkMode, setDarkMode] = useState(
-    localStorage.getItem("dark_mode") === "true"
-  );
+  const [selectedTheme, setSelectedTheme] = useState(getStoredTheme());
   const [compactMode, setCompactMode] = useState(
     localStorage.getItem("compact_mode") === "true"
   );
@@ -49,12 +48,11 @@ export default function Settings({ user, onLogout }) {
   }, []);
 
   useEffect(() => {
-    document.body.classList.toggle("dark-theme", darkMode);
+    applyTheme(selectedTheme);
     document.body.classList.toggle("compact-theme", compactMode);
-    localStorage.setItem("dark_mode", String(darkMode));
     localStorage.setItem("compact_mode", String(compactMode));
     localStorage.setItem("show_completed_tasks", String(showCompletedTasks));
-  }, [darkMode, compactMode, showCompletedTasks]);
+  }, [selectedTheme, compactMode, showCompletedTasks]);
 
   async function loadProfile() {
     try {
@@ -123,7 +121,6 @@ export default function Settings({ user, onLogout }) {
     event.preventDefault();
     localStorage.setItem("default_task_priority", defaultPriority);
     localStorage.setItem("default_learning_minutes", defaultLearningMinutes);
-    localStorage.setItem("dark_mode", String(darkMode));
     localStorage.setItem("compact_mode", String(compactMode));
     localStorage.setItem("show_completed_tasks", String(showCompletedTasks));
     setPreferencesMessage("Preferences saved.");
@@ -193,6 +190,41 @@ export default function Settings({ user, onLogout }) {
           )}
         </section>
 
+        <section className="settings-card settings-card-wide">
+          <div className="settings-card-header">
+            <div>
+              <h2>Appearance</h2>
+              <p>Switch the interface between curated visual themes.</p>
+            </div>
+          </div>
+
+          <div className="theme-selector-grid" role="radiogroup" aria-label="Theme selection">
+            {Object.entries(THEMES).map(([themeId, theme]) => (
+              <button
+                key={themeId}
+                type="button"
+                role="radio"
+                aria-checked={selectedTheme === themeId}
+                className={`theme-card ${selectedTheme === themeId ? "selected" : ""}`}
+                onClick={() => setSelectedTheme(themeId)}
+              >
+                <div className="theme-card-header">
+                  <span>{theme.label}</span>
+                  <span className="theme-radio" aria-hidden="true" />
+                </div>
+
+                <div className="theme-swatch" aria-hidden="true">
+                  {theme.colors.map((color) => (
+                    <span key={color} style={{ background: color }} />
+                  ))}
+                </div>
+
+                <p>{theme.description}</p>
+              </button>
+            ))}
+          </div>
+        </section>
+
         <section className="settings-card">
           <div className="settings-card-header">
             <div>
@@ -225,18 +257,6 @@ export default function Settings({ user, onLogout }) {
                 <option value="90">1.5 hours</option>
                 <option value="120">2 hours</option>
               </select>
-            </label>
-
-            <label className="settings-toggle">
-              <span>Dark mode</span>
-              <button
-                type="button"
-                className={`toggle-switch ${darkMode ? "on" : ""}`}
-                aria-pressed={darkMode}
-                onClick={() => setDarkMode((value) => !value)}
-              >
-                <span className="toggle-knob" />
-              </button>
             </label>
 
             <label className="settings-toggle">
