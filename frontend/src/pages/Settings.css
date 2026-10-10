@@ -218,8 +218,8 @@
 }
 
 body.dark-theme {
-  background: #09090b;
-  color: #f4f4f5;
+  background: var(--bg);
+  color: var(--ink);
 }
 
 body.dark-theme .settings-card,
@@ -275,4 +275,31 @@ body.compact-theme .settings-form {
     align-items: stretch;
     flex-direction: column;
   }
+}
+
+body.dark-theme .settings-card {
+  background: var(--card-surface);
+  border-color: var(--border);
+}
+
+body.dark-theme .settings-form input,
+body.dark-theme .settings-form select,
+body.dark-theme .settings-toggle {
+  background: var(--control-surface);
+  border-color: var(--border-strong);
+  color: var(--ink);
+}
+
+body.dark-theme .settings-form label,
+body.dark-theme .settings-toggle span,
+body.dark-theme .settings-card-header p,
+body.dark-theme .settings-header p,
+body.dark-theme .settings-danger-row span,
+body.dark-theme .settings-muted {
+  color: var(--ink-muted);
+}
+
+body.dark-theme .settings-header h1,
+body.dark-theme .settings-card-header h2 {
+  color: var(--ink-strong);
 }

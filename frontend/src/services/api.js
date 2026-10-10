@@ -47,10 +47,10 @@ export function loginUser(credentials) {
   });
 }
 
-export function registerUser(name, username, password) {
+export function registerUser(name, username, password, device = "Other") {
   return request("/auth/register", {
     method: "POST",
-    body: JSON.stringify({ name, username, password }),
+    body: JSON.stringify({ name, username, password, device }),
   });
 }
 

@@ -6,6 +6,7 @@ import {
   updateExamResult,
   deleteExamResult,
 } from "../services/api";
+import { DEMO_EXAMS } from "../data/demoSchedule";
 import "./Exams.css";
 
 const EMPTY_FORM = {
@@ -356,6 +357,56 @@ export default function Exams() {
             })}
           </div>
         )}
+      </div>
+
+      <div className="exams-section exams-demo-section">
+        <div className="exams-section-header">
+          <div>
+            <h2>Sample exams</h2>
+
+            <p>Demo examples only. These are not part of your saved schedule.</p>
+          </div>
+
+          <span className="demo-label">DEMO</span>
+        </div>
+
+        <div className="exam-list">
+          {DEMO_EXAMS.map((exam) => (
+            <div className="exam-row" key={exam.id}>
+              <div className="exam-date">
+                <strong>
+                  {new Date(`${exam.exam_date}T00:00:00`).getDate()}
+                </strong>
+
+                <span>
+                  {new Date(`${exam.exam_date}T00:00:00`).toLocaleDateString(
+                    undefined,
+                    { month: "short" },
+                  )}
+                </span>
+              </div>
+
+              <div className="exam-main">
+                <div className="exam-title">{exam.exam_name}</div>
+
+                <div className="exam-meta">
+                  <span>{exam.subject}</span>
+                  <span>
+                    {exam.exam_type === "internal" ? "Internal" : "External"}
+                  </span>
+                  {exam.max_marks !== null && (
+                    <span>{exam.max_marks} marks</span>
+                  )}
+                  <span className="tentative">Demo example</span>
+                </div>
+
+                <div className="exam-meta">
+                  <span>{formatDate(exam.exam_date)}</span>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
 
       <div className="exams-section">

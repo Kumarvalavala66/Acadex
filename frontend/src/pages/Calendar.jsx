@@ -8,6 +8,7 @@ import {
 } from "../services/api";
 
 import RubberSegment from "../components/RubberSegment";
+import { DEMO_EVENTS, DEMO_EXAMS } from "../data/demoSchedule";
 
 import "./Calendar.css";
 
@@ -153,7 +154,7 @@ export default function Calendar() {
   const examsByDate = useMemo(() => {
     const grouped = {};
 
-    exams.forEach((exam) => {
+    [...exams, ...DEMO_EXAMS].forEach((exam) => {
       if (!exam.exam_date) return;
 
       if (!grouped[exam.exam_date]) {
@@ -165,6 +166,20 @@ export default function Calendar() {
 
     return grouped;
   }, [exams]);
+
+  const demoEventsByDate = useMemo(() => {
+    const grouped = {};
+
+    DEMO_EVENTS.forEach((event) => {
+      if (!grouped[event.date]) {
+        grouped[event.date] = [];
+      }
+
+      grouped[event.date].push(event);
+    });
+
+    return grouped;
+  }, []);
 
   // ============================================================
   // HOLIDAYS BY DATE
@@ -208,6 +223,7 @@ export default function Calendar() {
 
   const selectedExams = examsByDate[selectedDateKey] || [];
   const selectedHolidays = holidaysByDate[selectedDateKey] || [];
+  const selectedDemoEvents = demoEventsByDate[selectedDateKey] || [];
 
   // ============================================================
   // CALENDAR DAYS
@@ -488,6 +504,11 @@ export default function Calendar() {
         <span>
           <strong>●</strong> Holiday
         </span>
+
+        <span>
+          <strong style={{ color: "var(--accent)" }}>●</strong> Sample event
+          (demo only)
+        </span>
       </div>
 
       {error && <div className="calendar-error">{error}</div>}
@@ -511,6 +532,8 @@ export default function Calendar() {
               const dayExams = examsByDate[key] || [];
 
               const dayHolidays = holidaysByDate[key] || [];
+
+              const dayDemoEvents = demoEventsByDate[key] || [];
 
               const isToday = isSameDay(date, today);
 
@@ -538,6 +561,16 @@ export default function Calendar() {
                   <div className="calendar-day-number">{date.getDate()}</div>
 
                   <div className="calendar-day-tasks">
+                    {dayDemoEvents.slice(0, 2).map((event) => (
+                      <span
+                        key={event.id}
+                        className={`calendar-task-dot calendar-demo-event calendar-demo-${event.category.toLowerCase()}`}
+                        title={`Demo event: ${event.name} · ${event.location}`}
+                      >
+                        ✨ {event.name}
+                      </span>
+                    ))}
+
                     {/* HOLIDAYS */}
                     {dayHolidays.slice(0, 2).map((holiday, index) => (
                       <span
@@ -556,13 +589,14 @@ export default function Calendar() {
                     {dayExams.slice(0, 2).map((exam) => (
                       <span
                         key={`exam-${exam.id}`}
-                        className="calendar-task-dot"
+                        className={`calendar-task-dot${typeof exam.id === "string" ? " calendar-demo-exam" : ""}`}
                         title={`Exam: ${exam.subject} - ${exam.exam_name}`}
                         style={{
                           borderLeft: "3px solid #f59e0b",
                         }}
                       >
                         📝 {exam.subject}
+                        {typeof exam.id === "string" ? " · Demo" : ""}
                       </span>
                     ))}
 
@@ -622,10 +656,12 @@ export default function Calendar() {
             <span>
               {selectedTasks.length +
                 selectedExams.length +
-                selectedHolidays.length}{" "}
+                selectedHolidays.length +
+                selectedDemoEvents.length}{" "}
               {selectedTasks.length +
                 selectedExams.length +
-                selectedHolidays.length ===
+                selectedHolidays.length +
+                selectedDemoEvents.length ===
               1
                 ? "item"
                 : "items"}
@@ -633,6 +669,27 @@ export default function Calendar() {
           </div>
 
           <div className="calendar-detail-list">
+            {selectedDemoEvents.map((event) => (
+              <div
+                key={event.id}
+                className="calendar-detail-task calendar-demo-detail"
+              >
+                <div className="calendar-detail-task-main">
+                  <div className="calendar-detail-task-title">
+                    ✨ {event.name}
+                  </div>
+
+                  <div className="calendar-detail-task-meta">
+                    <span>{event.category} · {event.location}</span>
+                    <span>{event.description}</span>
+                    <span>Demo example · not saved</span>
+                  </div>
+                </div>
+
+                <div className="calendar-priority calendar-demo-badge">DEMO</div>
+              </div>
+            ))}
+
             {/* HOLIDAYS */}
 
             {selectedHolidays.map((holiday, index) => (
@@ -672,10 +729,18 @@ export default function Calendar() {
                     <span>{formatExamType(exam.exam_type)}</span>
 
                     {exam.max_marks && <span>Max {exam.max_marks}</span>}
+
+                    {typeof exam.id === "string" && (
+                      <span>Demo example · not saved</span>
+                    )}
                   </div>
                 </div>
 
-                <div className="calendar-priority high">EXAM</div>
+                <div
+                  className={`calendar-priority ${typeof exam.id === "string" ? "calendar-demo-badge" : "high"}`}
+                >
+                  {typeof exam.id === "string" ? "DEMO" : "EXAM"}
+                </div>
               </div>
             ))}
 
@@ -709,12 +774,14 @@ export default function Calendar() {
 
             {selectedTasks.length === 0 &&
               selectedExams.length === 0 &&
-              selectedHolidays.length === 0 && (
+              selectedHolidays.length === 0 &&
+              selectedDemoEvents.length === 0 && (
                 <div className="calendar-empty">
                   <p>No work scheduled.</p>
 
                   <span>
-                    Add a task, or select a date containing an exam or holiday.
+                    Add a task, or select a date containing an exam, holiday,
+                    or demo event.
                   </span>
                 </div>
               )}

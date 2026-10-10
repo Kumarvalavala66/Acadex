@@ -900,6 +900,110 @@
   font-size: 13px;
 }
 
+body.dark-theme .learning-page {
+  color: var(--ink);
+}
+
+body.dark-theme .learning-stat-card,
+body.dark-theme .learning-form-card,
+body.dark-theme .learning-list-card {
+  background: var(--card-surface);
+  border-color: var(--border);
+}
+
+body.dark-theme .learning-header h1,
+body.dark-theme .learning-stat-card strong,
+body.dark-theme .learning-form-card h2,
+body.dark-theme .learning-list-card h2,
+body.dark-theme .task-main h3,
+body.dark-theme .diary-date strong,
+body.dark-theme .diary-content p,
+body.dark-theme .subject-header strong,
+body.dark-theme .diary-progress-item strong {
+  color: var(--ink-strong);
+}
+
+body.dark-theme .learning-header p,
+body.dark-theme .stat-label,
+body.dark-theme .stat-subtext,
+body.dark-theme .form-description,
+body.dark-theme .section-heading p,
+body.dark-theme .form-field label,
+body.dark-theme .task-meta,
+body.dark-theme .empty-state p,
+body.dark-theme .diary-date span,
+body.dark-theme .diary-content strong,
+body.dark-theme .subject-header span,
+body.dark-theme .subject-percent,
+body.dark-theme .diary-progress-item p,
+body.dark-theme .learning-loading {
+  color: var(--ink-muted);
+}
+
+body.dark-theme .learning-tabs {
+  background: var(--control-surface);
+  border-color: var(--border);
+}
+
+body.dark-theme .learning-tabs button {
+  color: var(--ink-muted);
+}
+
+body.dark-theme .learning-tabs button:hover {
+  color: var(--ink-strong);
+}
+
+body.dark-theme .learning-tabs button.active {
+  background: var(--card-alt);
+  color: var(--ink-strong);
+}
+
+body.dark-theme .form-field input,
+body.dark-theme .form-field select,
+body.dark-theme .form-field textarea,
+body.dark-theme .status-select {
+  background: var(--control-surface);
+  border-color: var(--border-strong);
+  color: var(--ink);
+}
+
+body.dark-theme .form-field input::placeholder,
+body.dark-theme .form-field textarea::placeholder {
+  color: var(--ink-muted);
+}
+
+body.dark-theme .learning-task,
+body.dark-theme .diary-entry,
+body.dark-theme .subject-progress,
+body.dark-theme .diary-progress-item {
+  border-color: var(--border);
+}
+
+body.dark-theme .learning-task:hover {
+  background: var(--card-alt);
+}
+
+body.dark-theme .learning-error {
+  background: var(--danger-surface);
+  border-color: rgba(248, 113, 113, 0.3);
+  color: var(--error);
+}
+
+body.dark-theme .priority-low {
+  background: var(--success-surface);
+  color: var(--success);
+}
+
+body.dark-theme .priority-medium {
+  background: var(--warning-surface);
+  color: var(--warning);
+}
+
+body.dark-theme .priority-high {
+  background: var(--danger-surface);
+  color: var(--error);
+}
+
 /* =========================================================
    RESPONSIVE — TABLET
    ========================================================= */

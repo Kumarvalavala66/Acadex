@@ -745,3 +745,71 @@ body.dark-theme .work-item .work-actions button {
     padding: 19px;
   }
 }
+
+body.dark-theme .work-page {
+  --work-card-background: var(--card-surface);
+  color: var(--ink);
+}
+
+body.dark-theme .work-item,
+body.dark-theme .work-item.completed,
+body.dark-theme .work-empty {
+  background: var(--card-surface);
+  border-color: var(--border);
+}
+
+body.dark-theme .work-title-group h3,
+body.dark-theme .work-empty h2,
+body.dark-theme .task-modal-header h2 {
+  color: var(--ink-strong);
+}
+
+body.dark-theme .work-header p,
+body.dark-theme .work-summary,
+body.dark-theme .work-meta,
+body.dark-theme .work-description,
+body.dark-theme .work-due,
+body.dark-theme .work-empty p {
+  color: var(--ink-muted);
+}
+
+body.dark-theme .work-search input,
+body.dark-theme .work-status,
+body.dark-theme .task-modal,
+body.dark-theme .task-modal .form-field input,
+body.dark-theme .task-modal .form-field select,
+body.dark-theme .task-modal .form-field textarea {
+  background: var(--control-surface);
+  border-color: var(--border-strong);
+  color: var(--ink);
+}
+
+body.dark-theme .work-search input::placeholder,
+body.dark-theme .task-modal .form-field label,
+body.dark-theme .modal-close,
+body.dark-theme .modal-cancel {
+  color: var(--ink-muted);
+}
+
+body.dark-theme .task-modal {
+  background: var(--card-surface);
+}
+
+body.dark-theme .task-modal-footer {
+  border-color: var(--border);
+}
+
+body.dark-theme .work-item .priority-high {
+  background: var(--danger-surface);
+  color: var(--error);
+}
+
+body.dark-theme .work-item .priority-medium {
+  background: var(--warning-surface);
+  color: var(--warning);
+}
+
+body.dark-theme .work-item .priority-low {
+  background: var(--success-surface);
+  color: var(--success);
+}

@@ -13,6 +13,8 @@ export default function Register() {
 
   const [password, setPassword] = useState("");
 
+  const [device, setDevice] = useState("Other");
+
   const [error, setError] = useState("");
 
   const [loading, setLoading] = useState(false);
@@ -24,7 +26,7 @@ export default function Register() {
     setLoading(true);
 
     try {
-      await registerUser(name.trim(), username.trim(), password);
+      await registerUser(name.trim(), username.trim(), password, device);
 
       navigate("/");
     } catch (err) {
@@ -45,8 +47,8 @@ export default function Register() {
               text="Acadex"
               fontSize={52}
               fontWeight={700}
-              color="#111827"
-              accentColor="#6b7280"
+              color="var(--ink-strong)"
+              accentColor="var(--ink-muted)"
               strokeWidth={1.1}
               specks={10}
               speed={1.2}
@@ -60,9 +62,10 @@ export default function Register() {
         </div>
 
         <form className="auth-form" onSubmit={handleSubmit}>
-          <label>
+          <label htmlFor="register-name">
             Name
             <input
+              id="register-name"
               type="text"
               value={name}
               onChange={(event) => setName(event.target.value)}
@@ -72,9 +75,10 @@ export default function Register() {
             />
           </label>
 
-          <label>
+          <label htmlFor="register-username">
             Username
             <input
+              id="register-username"
               type="text"
               value={username}
               onChange={(event) => setUsername(event.target.value)}
@@ -84,9 +88,10 @@ export default function Register() {
             />
           </label>
 
-          <label>
+          <label htmlFor="register-password">
             Password
             <input
+              id="register-password"
               type="password"
               value={password}
               onChange={(event) => setPassword(event.target.value)}
@@ -96,6 +101,28 @@ export default function Register() {
               minLength={6}
             />
           </label>
+
+          <label htmlFor="register-device" className="device-field">
+            Device
+            <select
+              id="register-device"
+              value={device}
+              onChange={(event) => setDevice(event.target.value)}
+              aria-label="Select your primary device"
+            >
+              <option value="Android">Android</option>
+              <option value="iOS">iOS</option>
+              <option value="Windows">Windows</option>
+              <option value="macOS">macOS</option>
+              <option value="Linux">Linux</option>
+              <option value="Other">Other</option>
+            </select>
+          </label>
+
+          <p className="device-helper">
+            Device preference is currently captured on the frontend only; backend
+            persistence requires a separate API update.
+          </p>
 
           {error && <div className="auth-error">{error}</div>}
 

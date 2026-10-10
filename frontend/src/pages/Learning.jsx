@@ -278,10 +278,10 @@ function Learning() {
               setActiveTab("progress");
             }
           }}
-          trackColor="#27272a"
-          thumbColor="#fafafa"
-          textColor="#fafafa"
-          activeTextColor="#18181b"
+          trackColor="var(--segment-track)"
+          thumbColor="var(--segment-thumb)"
+          textColor="var(--ink-muted)"
+          activeTextColor="var(--ink-strong)"
           size="md"
           radius={10}
           inset={3}

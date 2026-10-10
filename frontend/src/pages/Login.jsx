@@ -59,8 +59,8 @@ export default function Login() {
             text="Acadex"
             fontSize={110}
             fontWeight={700}
-            color="#111827"
-            accentColor="#7c8aa3"
+            color="var(--ink-strong)"
+            accentColor="var(--ink-muted)"
             letterSpacing={-0.06}
             strokeWidth={1.2}
             speed={1.15}

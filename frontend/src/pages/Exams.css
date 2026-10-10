@@ -474,3 +474,93 @@
     grid-template-columns: 1fr;
   }
 }
+
+body.dark-theme .exam-stat,
+body.dark-theme .exams-section,
+body.dark-theme .exam-modal {
+  background: var(--card-surface);
+  border-color: var(--border);
+}
+
+body.dark-theme .exam-date,
+body.dark-theme .exam-meta span,
+body.dark-theme .exam-actions button:hover,
+body.dark-theme .result-row > button:hover {
+  background: var(--card-alt);
+}
+
+body.dark-theme .exams-header h1,
+body.dark-theme .exam-stat strong,
+body.dark-theme .exams-section-header h2,
+body.dark-theme .exam-date strong,
+body.dark-theme .exam-title,
+body.dark-theme .result-row > div:first-child strong,
+body.dark-theme .result-score strong,
+body.dark-theme .exam-modal-header h2 {
+  color: var(--ink-strong);
+}
+
+body.dark-theme .exams-eyebrow,
+body.dark-theme .exams-subtitle,
+body.dark-theme .exam-stat span,
+body.dark-theme .exams-section-header p,
+body.dark-theme .exam-date span,
+body.dark-theme .exam-meta span,
+body.dark-theme .exam-actions button,
+body.dark-theme .result-row > button,
+body.dark-theme .result-row > div:first-child span,
+body.dark-theme .result-score span,
+body.dark-theme .exams-empty span,
+body.dark-theme .exam-modal-header p,
+body.dark-theme .exam-form label > span,
+body.dark-theme .exam-form-actions button {
+  color: var(--ink-muted);
+}
+
+body.dark-theme .exam-actions button,
+body.dark-theme .result-row > button,
+body.dark-theme .exam-modal-header > button,
+body.dark-theme .exam-form-actions button,
+body.dark-theme .exam-form input,
+body.dark-theme .exam-form select,
+body.dark-theme .exam-form textarea {
+  background: var(--control-surface);
+  border-color: var(--border-strong);
+}
+
+body.dark-theme .exam-form input,
+body.dark-theme .exam-form select,
+body.dark-theme .exam-form textarea {
+  color: var(--ink);
+}
+
+body.dark-theme .exam-form-actions button[type="submit"] {
+  background: #dbeafe;
+  border-color: #dbeafe;
+  color: #101827;
+}
+
+.exams-demo-section .exams-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.demo-label {
+  flex: 0 0 auto;
+  padding: 5px 8px;
+  border: 1px solid rgba(124, 58, 237, 0.22);
+  border-radius: 999px;
+  background: rgba(124, 58, 237, 0.1);
+  color: #5b21b6;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+body.dark-theme .demo-label {
+  border-color: rgba(167, 139, 250, 0.35);
+  background: rgba(167, 139, 250, 0.16);
+  color: #ddd6fe;
+}

@@ -268,6 +268,45 @@
   border: 1px solid #ddd9d0;
 }
 
+body.dark-theme .board-column,
+body.dark-theme .board-loading div {
+  background: var(--card-surface);
+  border-color: var(--border);
+}
+
+body.dark-theme .board-column.drag-over {
+  background: var(--surface-muted);
+}
+
+body.dark-theme .board-card {
+  background: var(--card-alt);
+  border-color: var(--border);
+}
+
+body.dark-theme .board-count {
+  background: var(--surface);
+  border-color: var(--border-strong);
+  color: var(--ink);
+}
+
+body.dark-theme .board-card h3 {
+  color: var(--ink-strong);
+}
+
+body.dark-theme .board-column-header p,
+body.dark-theme .board-type,
+body.dark-theme .board-priority,
+body.dark-theme .board-card-description,
+body.dark-theme .board-card-meta,
+body.dark-theme .board-empty-column {
+  color: var(--ink-muted);
+}
+
+body.dark-theme .board-priority.high,
+body.dark-theme .board-card-meta .overdue {
+  color: var(--error);
+}
+
 @media (max-width: 1050px) {
   .board-columns {
     grid-template-columns: 1fr;
