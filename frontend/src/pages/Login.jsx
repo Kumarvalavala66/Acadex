@@ -58,7 +58,7 @@ export default function Login() {
           <TechText
             className="auth-brand-text"
             text="Acadex"
-            fontSize={110}
+            fontSize="clamp(64px, 22vw, 110px)"
             fontWeight={700}
             color="var(--ink-strong)"
             accentColor="var(--ink-muted)"

@@ -71,6 +71,117 @@ function getTaskTypeLabel(type) {
   }[type] || "Task";
 }
 
+function getEventTypeLabel(event) {
+  if (TASK_TYPES.includes(event.type)) return getTaskTypeLabel(event.type);
+  return {
+    exam: "Exam",
+    learning: "Learning",
+    holiday: "Holiday",
+  }[event.type] || "Event";
+}
+
+function getEventMetaLabel(event) {
+  if (TASK_TYPES.includes(event.type) || event.type === "learning") {
+    return "Due date";
+  }
+  if (event.type === "exam") {
+    return event.isTentative ? "Tentative exam" : "Exam";
+  }
+  return "Holiday";
+}
+
+const DEMO_EVENT_OPTIONS = {
+  exam: [
+    { title: "Biology midterm", subject: "Biology" },
+    { title: "Calculus exam", subject: "Mathematics" },
+    { title: "World history exam", subject: "History" },
+    { title: "Chemistry test", subject: "Chemistry" },
+  ],
+  assignment: [
+    { title: "Submit lab report", subject: "Biology" },
+    { title: "Essay draft due", subject: "English" },
+    { title: "Problem set due", subject: "Mathematics" },
+    { title: "Reading response", subject: "History" },
+  ],
+  project: [
+    { title: "Research project checkpoint", subject: "Science" },
+    { title: "Group presentation", subject: "English" },
+  ],
+  personal: [
+    { title: "Organize study notes", subject: "Personal" },
+    { title: "Weekly planning", subject: "Personal" },
+  ],
+  learning: [
+    { title: "Review lecture notes", subject: "Physics" },
+    { title: "Practice vocabulary", subject: "Language" },
+    { title: "Complete reading session", subject: "Literature" },
+    { title: "Revise key concepts", subject: "Chemistry" },
+  ],
+};
+
+const DEMO_EVENT_PLAN = [
+  "exam",
+  "assignment",
+  "learning",
+  "project",
+  "exam",
+  "learning",
+  "assignment",
+  "personal",
+  "exam",
+  "learning",
+  "project",
+  "assignment",
+  "learning",
+  "assignment",
+];
+
+function createDemoEvents(selectedDate, holidays) {
+  const year = selectedDate.getFullYear();
+  const month = selectedDate.getMonth();
+  let randomState = (year * 100 + month + 1) >>> 0;
+
+  function random() {
+    randomState = (Math.imul(randomState, 1664525) + 1013904223) >>> 0;
+    return randomState / 0x100000000;
+  }
+
+  const holidayDates = new Set(holidays.map((holiday) => holiday.date));
+  const availableDates = makeDateRange(
+    new Date(year, month, 1),
+    new Date(year, month + 1, 0),
+  ).filter((date) => !holidayDates.has(getDateKey(date)));
+
+  return DEMO_EVENT_PLAN.flatMap((type, index) => {
+    const eligibleIndices = availableDates.flatMap((date, dateIndex) =>
+      type !== "exam" || (date.getDay() > 0 && date.getDay() < 6)
+        ? [dateIndex]
+        : [],
+    );
+    if (!eligibleIndices.length) return [];
+
+    const selectedIndex =
+      eligibleIndices[Math.floor(random() * eligibleIndices.length)];
+    const [date] = availableDates.splice(selectedIndex, 1);
+    const options = DEMO_EVENT_OPTIONS[type];
+    const option = options[Math.floor(random() * options.length)];
+    const dateKey = getDateKey(date);
+
+    return [{
+      id: `demo-${type}-${dateKey}-${index}`,
+      type,
+      kind: "demo",
+      title: option.title,
+      date: dateKey,
+      status: null,
+      subject: option.subject,
+      priority: type === "exam" ? "high" : "medium",
+      description: null,
+      isTentative: false,
+    }];
+  });
+}
+
 function createEmptyForm(dateKey) {
   return {
     title: "",
@@ -140,9 +251,9 @@ function holidayAsEvent(holiday, index) {
 }
 
 function eventRoute(event) {
-  if (event.kind === "exam") return "/exams";
-  if (event.kind === "learning") return "/learning";
-  if (event.kind === "task") return "/work";
+  if (event.type === "exam") return "/exams";
+  if (event.type === "learning") return "/learning";
+  if (TASK_TYPES.includes(event.type)) return "/work";
   return null;
 }
 
@@ -191,6 +302,13 @@ export default function Calendar() {
     loadCalendarData();
   }, [loadCalendarData]);
 
+  const demoEvents = useMemo(() => {
+    if (loading || error || tasks.length || learningTasks.length || exams.length) {
+      return [];
+    }
+    return createDemoEvents(selectedDate, holidays);
+  }, [error, exams.length, holidays, learningTasks.length, loading, selectedDate, tasks.length]);
+
   const visibleDates = useMemo(() => {
     if (view === "Day") return [new Date(selectedDate)];
     if (view === "Week") {
@@ -220,6 +338,7 @@ export default function Calendar() {
     learningTasks.forEach((task) => add(learningTaskAsEvent(task)));
     exams.forEach((exam) => add(examAsEvent(exam)));
     holidays.forEach((holiday, index) => add(holidayAsEvent(holiday, index)));
+    demoEvents.forEach(add);
 
     for (const [dateKey, events] of grouped) {
       grouped.set(
@@ -231,7 +350,7 @@ export default function Calendar() {
       );
     }
     return grouped;
-  }, [exams, holidays, learningTasks, tasks]);
+  }, [demoEvents, exams, holidays, learningTasks, tasks]);
 
   const selectedKey = getDateKey(selectedDate);
 
@@ -446,6 +565,11 @@ export default function Calendar() {
         ].map(([type, label]) => (
           <span key={type}><i className={`calendar-legend-dot ${type}`} />{label}</span>
         ))}
+        {demoEvents.length > 0 && (
+          <span className="calendar-demo-note" role="status">
+            Sample timetable · preview data
+          </span>
+        )}
         <label className="calendar-filter-control">
           <span className="sr-only">Filter calendar events</span>
           <select value={filter} onChange={(event) => setFilter(event.target.value)}>
@@ -532,7 +656,7 @@ export default function Calendar() {
                         className={`calendar-event-chip ${item.type} ${item.status === "completed" ? "completed" : ""} ${draggedTask?.id === item.entityId ? "is-dragging" : ""}`}
                         key={item.id}
                         draggable={item.kind === "task" && movingTaskId !== item.entityId}
-                        title={`${item.title} · ${item.kind === "task" ? `${getTaskTypeLabel(item.type)} due` : item.type}`}
+                        title={`${item.title} · ${getEventTypeLabel(item)}${TASK_TYPES.includes(item.type) || item.type === "learning" ? " due" : ""}`}
                         onDragStart={(event) => {
                           if (item.kind !== "task") return;
                           setDraggedTask(tasks.find((task) => task.id === item.entityId));
@@ -593,11 +717,11 @@ export default function Calendar() {
                   {!showDate && <div className="calendar-schedule-date-spacer" />}
                   <i className="calendar-schedule-marker" />
                   <div className="calendar-schedule-copy">
-                    <span className="calendar-schedule-type">{item.kind === "task" ? getTaskTypeLabel(item.type) : item.type}</span>
+                    <span className="calendar-schedule-type">{getEventTypeLabel(item)}</span>
                     <strong>{route ? <Link to={route}>{item.title}</Link> : item.title}</strong>
                     {item.subject && <span className="calendar-schedule-subject">{item.subject}</span>}
                     <span className="calendar-schedule-meta">
-                      {item.kind === "task" || item.kind === "learning" ? "Due date" : item.isTentative ? "Tentative exam" : item.kind === "exam" ? "Exam" : "Holiday"}
+                      {getEventMetaLabel(item)}
                       {item.status ? ` · ${item.status.replace("_", " ")}` : ""}
                     </span>
                   </div>
@@ -632,11 +756,11 @@ export default function Calendar() {
                 <article className={`calendar-agenda-item ${item.type}`} key={item.id}>
                   <i className="calendar-agenda-marker" />
                   <div className="calendar-agenda-copy">
-                    <span className="calendar-agenda-type">{item.kind === "task" ? getTaskTypeLabel(item.type) : item.type}</span>
+                    <span className="calendar-agenda-type">{getEventTypeLabel(item)}</span>
                     <strong>{route ? <Link to={route}>{item.title}</Link> : item.title}</strong>
                     {item.subject && <span className="calendar-agenda-subject">{item.subject}</span>}
                     <span className="calendar-agenda-meta">
-                      {item.kind === "task" || item.kind === "learning" ? "Due date · " : ""}
+                      {TASK_TYPES.includes(item.type) || item.type === "learning" ? "Due date · " : ""}
                       {formatShortDate(item.date)}
                       {item.status ? ` · ${item.status.replace("_", " ")}` : ""}
                       {item.isTentative ? " · Tentative" : ""}
@@ -680,7 +804,7 @@ export default function Calendar() {
                     <i className="calendar-agenda-marker" />
                     <div>
                       <strong>{route ? <Link to={route}>{item.title}</Link> : item.title}</strong>
-                      <span>{item.kind === "task" ? getTaskTypeLabel(item.type) : item.type} · {formatShortDate(item.date)}</span>
+                      <span>{getEventTypeLabel(item)} · {formatShortDate(item.date)}</span>
                     </div>
                   </div>
                 );

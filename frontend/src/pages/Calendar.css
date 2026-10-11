@@ -184,6 +184,12 @@
   gap: 7px;
 }
 
+.calendar-demo-note {
+  color: var(--ink-muted);
+  font-size: 10px;
+  font-style: italic;
+}
+
 .calendar-legend-dot,
 .calendar-agenda-marker,
 .calendar-event-chip i {
@@ -194,52 +200,44 @@
   background: var(--accent);
 }
 
-.calendar-legend-dot.project,
-.calendar-event-chip.project,
-.calendar-schedule-item.project,
-.calendar-agenda-item.project .calendar-agenda-marker,
-.calendar-upcoming-item.project .calendar-agenda-marker {
-  --event-color: var(--color-chart-2);
-}
-
-.calendar-legend-dot.personal,
-.calendar-event-chip.personal,
-.calendar-schedule-item.personal,
-.calendar-agenda-item.personal .calendar-agenda-marker,
-.calendar-upcoming-item.personal .calendar-agenda-marker {
-  --event-color: var(--color-chart-3);
+.calendar-legend-dot:is(.assignment, .project, .personal),
+.calendar-event-chip:is(.assignment, .project, .personal),
+.calendar-schedule-item:is(.assignment, .project, .personal),
+.calendar-agenda-item:is(.assignment, .project, .personal),
+.calendar-upcoming-item:is(.assignment, .project, .personal),
+.calendar-more-item:is(.assignment, .project, .personal) {
+  --event-color: var(--calendar-event-task);
+  --event-label-color: var(--calendar-event-label-task);
 }
 
 .calendar-legend-dot.exam,
 .calendar-event-chip.exam,
 .calendar-schedule-item.exam,
-.calendar-agenda-item.exam .calendar-agenda-marker,
-.calendar-upcoming-item.exam .calendar-agenda-marker {
+.calendar-agenda-item.exam,
+.calendar-upcoming-item.exam,
+.calendar-more-item.exam {
   --event-color: var(--calendar-event-exam);
+  --event-label-color: var(--calendar-event-label-exam);
 }
 
 .calendar-legend-dot.learning,
 .calendar-event-chip.learning,
 .calendar-schedule-item.learning,
-.calendar-agenda-item.learning .calendar-agenda-marker,
-.calendar-upcoming-item.learning .calendar-agenda-marker {
-  --event-color: var(--color-success);
+.calendar-agenda-item.learning,
+.calendar-upcoming-item.learning,
+.calendar-more-item.learning {
+  --event-color: var(--calendar-event-learning);
+  --event-label-color: var(--calendar-event-label-learning);
 }
 
 .calendar-legend-dot.holiday,
 .calendar-event-chip.holiday,
 .calendar-schedule-item.holiday,
-.calendar-agenda-item.holiday .calendar-agenda-marker,
-.calendar-upcoming-item.holiday .calendar-agenda-marker {
+.calendar-agenda-item.holiday,
+.calendar-upcoming-item.holiday,
+.calendar-more-item.holiday {
   --event-color: var(--calendar-event-holiday);
-}
-
-.calendar-legend-dot.assignment,
-.calendar-event-chip.assignment,
-.calendar-schedule-item.assignment,
-.calendar-agenda-item.assignment .calendar-agenda-marker,
-.calendar-upcoming-item.assignment .calendar-agenda-marker {
-  --event-color: var(--color-primary);
+  --event-label-color: var(--calendar-event-label-holiday);
 }
 
 .calendar-legend-dot {
@@ -425,10 +423,11 @@ body.dark-theme .main-content .calendar-page .calendar-day.today .calendar-day-n
   gap: 6px;
   width: 100%;
   min-width: 0;
-  padding: 4px 5px;
+  padding: 3px 4px;
   overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--event-color, var(--accent)) 35%, var(--border));
   border-radius: 5px;
-  background: color-mix(in srgb, var(--event-color, var(--accent)) 12%, var(--card-surface));
+  background: color-mix(in srgb, var(--event-color, var(--accent)) 13%, var(--card-surface));
   color: var(--ink);
   font-size: 10px;
   font-weight: 620;
@@ -573,6 +572,10 @@ body.dark-theme .main-content .calendar-page .calendar-day.today .calendar-day-n
   background: var(--surface);
 }
 
+.calendar-agenda-item:is(.assignment, .project, .personal, .exam, .learning, .holiday) {
+  border-color: color-mix(in srgb, var(--event-color, var(--border)) 34%, var(--border));
+}
+
 .calendar-agenda-marker {
   margin-top: 5px;
   background: var(--event-color, var(--accent));
@@ -591,6 +594,7 @@ body.dark-theme .main-content .calendar-page .calendar-day.today .calendar-day-n
 }
 
 .calendar-agenda-type {
+  color: var(--event-label-color, var(--event-color, var(--ink-muted)));
   font-weight: 750;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -807,9 +811,9 @@ body.dark-theme .main-content .calendar-page .calendar-day.today .calendar-day-n
   gap: 10px;
   align-items: start;
   padding: 11px 12px;
-  border: 1px solid var(--border);
+  border: 1px solid color-mix(in srgb, var(--event-color, var(--border)) 34%, var(--border));
   border-radius: 8px;
-  background: var(--surface);
+  background: color-mix(in srgb, var(--event-color, var(--accent)) 9%, var(--surface));
 }
 
 .calendar-more-item > div {
@@ -1405,8 +1409,8 @@ body.dark-theme .main-content .calendar-page .calendar-day.today .calendar-day-n
   gap: 10px;
   min-height: 76px;
   padding: 12px 13px;
-  border-bottom: 1px solid var(--border);
-  background: var(--card-surface);
+  border-bottom: 1px solid color-mix(in srgb, var(--event-color, var(--border)) 30%, var(--border));
+  background: color-mix(in srgb, var(--event-color, var(--accent)) 6%, var(--card-surface));
 }
 
 .calendar-schedule-item:hover {
@@ -1456,7 +1460,7 @@ body.dark-theme .main-content .calendar-page .calendar-day.today .calendar-day-n
 }
 
 .calendar-schedule-type {
-  color: var(--ink-muted);
+  color: var(--event-label-color, var(--event-color, var(--ink-muted)));
   font-size: 8px;
   font-weight: 750;
   letter-spacing: 0.08em;
@@ -1527,10 +1531,13 @@ body.dark-theme .main-content .calendar-page .calendar-day.today .calendar-day-n
 
 .calendar-workspace .calendar-section-kicker,
 .calendar-workspace .calendar-agenda-header p,
-.calendar-workspace .calendar-agenda-type,
 .calendar-workspace .calendar-agenda-meta,
 .calendar-workspace .calendar-agenda-copy p {
   color: var(--calendar-detail-muted);
+}
+
+.calendar-workspace .calendar-agenda-type {
+  color: var(--event-label-color, var(--event-color, var(--calendar-detail-muted)));
 }
 
 .calendar-workspace .calendar-icon-action {
@@ -1540,7 +1547,11 @@ body.dark-theme .main-content .calendar-page .calendar-day.today .calendar-day-n
 }
 
 .calendar-workspace .calendar-agenda-item {
-  background: color-mix(in srgb, var(--calendar-detail-deep) 50%, transparent);
+  background: color-mix(
+    in srgb,
+    var(--event-color, transparent) 7%,
+    color-mix(in srgb, var(--calendar-detail-deep) 50%, transparent)
+  );
 }
 
 .calendar-workspace .calendar-agenda-marker {
