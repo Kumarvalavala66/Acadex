@@ -1,5 +1,5 @@
-import { useEffect } from "react";
-import { Navigate, NavLink, Route, Routes } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Navigate, NavLink, Route, Routes, useLocation } from "react-router-dom";
 
 import TechText from "./components/TechText";
 import Login from "./pages/Login";
@@ -15,16 +15,23 @@ import Settings from "./pages/Settings";
 
 function ProtectedLayout() {
   const token = localStorage.getItem("access_token");
+  const location = useLocation();
+  const [mobileMenuState, setMobileMenuState] = useState({
+    pathname: location.pathname,
+    open: false,
+  });
+  const isMobileMenuOpen =
+    mobileMenuState.pathname === location.pathname && mobileMenuState.open;
+
+  useEffect(() => {
+    document.title = "Acadex";
+  }, []);
 
   if (!token) {
     return <Navigate to="/" replace />;
   }
 
   const user = JSON.parse(localStorage.getItem("user") || "{}");
-
-  useEffect(() => {
-    document.title = "Acadex";
-  }, []);
 
   const navGroups = [
     {
@@ -66,6 +73,22 @@ function ProtectedLayout() {
       ],
     },
   ];
+  const mobilePrimaryItems = [
+    { path: "/dashboard", label: "Dashboard" },
+    { path: "/work", label: "Work" },
+    { path: "/board", label: "Board" },
+    { path: "/calendar", label: "Calendar" },
+    { path: "/learning", label: "Learning" },
+  ];
+  const mobileOverflowItems = [
+    ...navGroups.flatMap((group) => group.items),
+    { path: "/settings", label: "Settings" },
+  ].filter(
+    (item) => !mobilePrimaryItems.some((primary) => primary.path === item.path),
+  );
+  const isMobileOverflowActive = mobileOverflowItems.some(
+    (item) => item.path === location.pathname,
+  );
 
   function logout() {
     localStorage.removeItem("access_token");
@@ -175,6 +198,73 @@ function ProtectedLayout() {
           <Route path="*" element={<Navigate to="/dashboard" replace />} />
         </Routes>
       </main>
+
+      <nav className="mobile-navigation" aria-label="Main navigation">
+        <div className="mobile-navigation-primary">
+          {mobilePrimaryItems.map((item) => (
+            <NavLink
+              key={item.path}
+              to={item.path}
+              className={({ isActive }) =>
+                `mobile-navigation-link ${isActive ? "active" : ""}`
+              }
+              onClick={() =>
+                setMobileMenuState({
+                  pathname: location.pathname,
+                  open: false,
+                })
+              }
+            >
+              {item.label}
+            </NavLink>
+          ))}
+          <button
+            type="button"
+            className={`mobile-navigation-link mobile-navigation-more ${
+              isMobileOverflowActive || isMobileMenuOpen ? "active" : ""
+            }`}
+            aria-expanded={isMobileMenuOpen}
+            aria-controls="mobile-navigation-menu"
+            onClick={() =>
+              setMobileMenuState({
+                pathname: location.pathname,
+                open: !isMobileMenuOpen,
+              })
+            }
+          >
+            More
+          </button>
+        </div>
+
+        {isMobileMenuOpen && (
+          <div className="mobile-navigation-menu" id="mobile-navigation-menu">
+            {mobileOverflowItems.map((item) => (
+              <NavLink
+                key={item.path}
+                to={item.path}
+                className={({ isActive }) =>
+                  `mobile-navigation-menu-link ${isActive ? "active" : ""}`
+                }
+                onClick={() =>
+                  setMobileMenuState({
+                    pathname: location.pathname,
+                    open: false,
+                  })
+                }
+              >
+                {item.label}
+              </NavLink>
+            ))}
+            <button
+              type="button"
+              className="mobile-navigation-menu-link"
+              onClick={logout}
+            >
+              Sign out
+            </button>
+          </div>
+        )}
+      </nav>
     </div>
   );
 }

@@ -322,7 +322,7 @@ body.compact-theme .settings-form {
 
 @media (max-width: 820px) {
   .settings-page {
-    padding: 24px 20px 44px;
+    padding: 0 0 32px;
   }
 
   .settings-grid {

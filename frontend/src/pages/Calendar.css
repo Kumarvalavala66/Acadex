@@ -974,6 +974,13 @@ body.dark-theme .main-content .calendar-page .calendar-day.today .calendar-day-n
 
   .calendar-view-switch button {
     flex: 1;
+    min-height: 44px;
+  }
+
+  .calendar-period-control button,
+  .calendar-icon-action {
+    width: 44px;
+    height: 44px;
   }
 
   .calendar-day {
@@ -1001,6 +1008,17 @@ body.dark-theme .main-content .calendar-page .calendar-day.today .calendar-day-n
     grid-template-columns: 1fr;
   }
 
+  .calendar-modal-backdrop {
+    place-items: start center;
+    padding: 12px;
+  }
+
+  .calendar-task-dialog,
+  .calendar-more-dialog {
+    max-height: calc(100dvh - 24px);
+    overflow-y: auto;
+  }
+
   .view-week .calendar-day {
     min-height: 250px;
   }
@@ -1021,7 +1039,7 @@ body.dark-theme .main-content .calendar-page .calendar-day.today .calendar-day-n
 
   .calendar-today-button,
   .calendar-add-button {
-    min-height: 37px;
+    min-height: 44px;
     padding: 0 10px;
     font-size: 11px;
   }
@@ -1037,6 +1055,7 @@ body.dark-theme .main-content .calendar-page .calendar-day.today .calendar-day-n
 
   .calendar-filter-control select {
     width: 100%;
+    min-height: 44px;
   }
 
   .calendar-weekday {
@@ -1098,6 +1117,7 @@ body.dark-theme .main-content .calendar-page .calendar-day.today .calendar-day-n
   .calendar-form-actions button {
     width: 100%;
   }
+
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1592,5 +1612,21 @@ body.dark-theme .main-content .calendar-page .calendar-day.today .calendar-day-n
 
   .calendar-date-rail .calendar-day {
     min-height: 42px;
+  }
+}
+
+@media (max-width: 850px) {
+  .calendar-workspace {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .calendar-date-rail,
+  .calendar-schedule-pane,
+  .calendar-workspace > .calendar-agenda {
+    min-height: auto;
+  }
+
+  .calendar-workspace > .calendar-agenda {
+    grid-column: auto;
   }
 }

@@ -457,8 +457,20 @@
     grid-template-columns: 48px minmax(0, 1fr);
   }
 
+  .exam-title {
+    overflow-wrap: anywhere;
+    white-space: normal;
+  }
+
   .exam-actions {
     grid-column: 2;
+    flex-wrap: wrap;
+  }
+
+  .exam-actions button,
+  .result-row > button,
+  .exam-form-actions button {
+    min-height: 44px;
   }
 
   .result-row {
@@ -472,6 +484,15 @@
 
   .exam-form-grid {
     grid-template-columns: 1fr;
+  }
+
+  .exam-modal-backdrop {
+    align-items: flex-start;
+    padding: 12px;
+  }
+
+  .exam-modal {
+    max-height: calc(100dvh - 24px);
   }
 }
 
