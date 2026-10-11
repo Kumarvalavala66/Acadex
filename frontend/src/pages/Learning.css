@@ -185,67 +185,8 @@
    ========================================================= */
 
 .learning-tabs {
-  display: flex;
-  align-items: center;
-
-  gap: 2px;
-
-  width: fit-content;
-
-  padding: 3px;
-
+  width: min(100%, 420px);
   margin-bottom: 22px;
-
-  background: #f5f5f7;
-
-  border: 1px solid #e5e5e7;
-
-  border-radius: 9px;
-}
-
-.learning-tabs button {
-  position: relative;
-
-  border: none;
-
-  border-radius: 7px;
-
-  padding: 7px 14px;
-
-  background: transparent;
-
-  color: #777;
-
-  font-family: inherit;
-
-  font-size: 12px;
-  font-weight: 500;
-
-  white-space: nowrap;
-
-  cursor: pointer;
-
-  transition:
-    color 0.2s ease,
-    background 0.2s ease,
-    box-shadow 0.2s ease,
-    transform 0.15s ease;
-}
-
-.learning-tabs button:hover {
-  color: #333;
-}
-
-.learning-tabs button.active {
-  background: #ffffff;
-
-  color: #111;
-
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
-}
-
-.learning-tabs button:active {
-  transform: scale(0.98);
 }
 
 /* =========================================================
@@ -940,24 +881,6 @@ body.dark-theme .learning-loading {
   color: var(--ink-muted);
 }
 
-body.dark-theme .learning-tabs {
-  background: var(--control-surface);
-  border-color: var(--border);
-}
-
-body.dark-theme .learning-tabs button {
-  color: var(--ink-muted);
-}
-
-body.dark-theme .learning-tabs button:hover {
-  color: var(--ink-strong);
-}
-
-body.dark-theme .learning-tabs button.active {
-  background: var(--card-alt);
-  color: var(--ink-strong);
-}
-
 body.dark-theme .form-field input,
 body.dark-theme .form-field select,
 body.dark-theme .form-field textarea,
@@ -1081,28 +1004,9 @@ body.dark-theme .priority-high {
     margin-bottom: 22px;
   }
 
-  /* Dashboard-style segmented switcher */
-
   .learning-tabs {
     width: 100%;
-
-    overflow-x: auto;
-
-    scrollbar-width: none;
-
     margin-bottom: 18px;
-  }
-
-  .learning-tabs::-webkit-scrollbar {
-    display: none;
-  }
-
-  .learning-tabs button {
-    flex: 1;
-
-    min-width: max-content;
-
-    white-space: nowrap;
   }
 
   /* Cards */

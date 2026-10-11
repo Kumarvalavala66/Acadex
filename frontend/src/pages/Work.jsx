@@ -317,12 +317,13 @@ export default function Work() {
         <div className="work-filter">
           <RubberSegment
             items={FILTERS}
+            ariaLabel="Filter work"
             defaultValue={filter}
             onChange={setFilter}
-            trackColor="#20221f"
-            thumbColor="#f4f1ea"
-            textColor="#b8bab3"
-            activeTextColor="#20221f"
+            trackColor="var(--segment-track)"
+            thumbColor="var(--segment-thumb)"
+            textColor="var(--segment-text)"
+            activeTextColor="var(--segment-active-text)"
             size="md"
             radius={9}
             inset={3}

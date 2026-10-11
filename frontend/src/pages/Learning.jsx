@@ -262,6 +262,7 @@ function Learning() {
       <div className="learning-tabs">
         <RubberSegment
           items={["Tasks", "Diary", "Progress"]}
+          ariaLabel="Learning sections"
           defaultValue={
             activeTab === "tasks"
               ? "Tasks"
@@ -280,8 +281,8 @@ function Learning() {
           }}
           trackColor="var(--segment-track)"
           thumbColor="var(--segment-thumb)"
-          textColor="var(--ink-muted)"
-          activeTextColor="var(--ink-strong)"
+          textColor="var(--segment-text)"
+          activeTextColor="var(--segment-active-text)"
           size="md"
           radius={10}
           inset={3}

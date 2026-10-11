@@ -17,6 +17,10 @@
   --color-chart-2: #9688ff;
   --color-chart-3: #72c69a;
   --color-chart-4: #f0b968;
+  --calendar-event-exam: #f0b968;
+  --calendar-event-holiday: #72c69a;
+  --segment-text: #a7abb8;
+  --segment-active-text: #20221f;
 
   --bg: var(--color-bg);
   --bg-strong: #1a1d24;
@@ -96,6 +100,10 @@
   --color-chart-2: #0d244d;
   --color-chart-3: #4a5a2b;
   --color-chart-4: #c2441c;
+  --calendar-event-exam: #e68a45;
+  --calendar-event-holiday: #8caf69;
+  --segment-text: #c5c8be;
+  --segment-active-text: #111c1a;
   --bg: var(--color-bg);
   --bg-strong: #12211f;
   --panel: rgba(20, 31, 28, 0.9);
@@ -157,6 +165,10 @@
   --color-chart-2: #f5a6c8;
   --color-chart-3: #b67eae;
   --color-chart-4: #ef9b79;
+  --calendar-event-exam: #ef9b79;
+  --calendar-event-holiday: #91b99a;
+  --segment-text: #d8b9ca;
+  --segment-active-text: #241a23;
   --bg: var(--color-bg);
   --bg-strong: #1d141d;
   --panel: rgba(38, 27, 37, 0.92);
@@ -211,7 +223,6 @@ body,
 }
 
 body {
-  min-width: 320px;
   background:
     radial-gradient(circle at top left, var(--page-glow-a), transparent 26%),
     radial-gradient(circle at bottom right, var(--page-glow-b), transparent 30%),
@@ -864,67 +875,126 @@ body.dark-theme .auth-submit {
   }
 
   .mobile-navigation-primary {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
     align-items: stretch;
-    justify-content: space-between;
     gap: 2px;
-    max-width: 600px;
     margin: 0 auto;
   }
 
   .mobile-navigation-link {
     display: grid;
-    flex: 1 1 0;
-    place-items: center;
+    grid-template-rows: 20px 11px;
+    align-content: center;
+    justify-items: center;
+    gap: 2px;
     min-width: 0;
     min-height: 44px;
-    padding: 5px 2px;
+    padding: 4px 2px;
     border: 0;
     border-radius: 8px;
     background: transparent;
     color: var(--ink-muted);
     font: inherit;
-    font-size: 10px;
-    font-weight: 650;
-    line-height: 1.15;
+    font-size: 9px;
+    font-weight: 600;
+    line-height: 11px;
     text-align: center;
     cursor: pointer;
+    transition: background-color 160ms ease, color 160ms ease;
   }
 
   .mobile-navigation-link.active {
-    background: var(--card-alt);
+    background: color-mix(in srgb, var(--accent) 12%, transparent);
     color: var(--ink-strong);
+  }
+
+  .mobile-navigation-icon {
+    display: block;
+    width: 19px;
+    height: 19px;
+    flex: 0 0 auto;
+  }
+
+  .mobile-navigation-label {
+    display: block;
+    max-width: 100%;
+    overflow: hidden;
+    opacity: 0;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    visibility: hidden;
+    transform: translateY(-2px);
+    transition:
+      opacity 160ms ease,
+      transform 160ms ease,
+      visibility 160ms ease;
+  }
+
+  .mobile-navigation-link.active .mobile-navigation-label {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .mobile-navigation-link:focus-visible,
+  .mobile-navigation-menu-link:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 1px;
   }
 
   .mobile-navigation-menu {
     position: absolute;
-    right: 8px;
+    left: 50%;
     bottom: calc(100% + 8px);
     display: grid;
-    width: min(240px, calc(100vw - 16px));
-    max-height: calc(100dvh - 100px);
-    gap: 2px;
+    width: min(360px, calc(100vw - 24px));
+    max-height: calc(100dvh - 112px - env(safe-area-inset-bottom));
+    gap: 4px;
     overflow-y: auto;
-    padding: 8px;
+    padding: 10px;
     border: 1px solid var(--border);
-    border-radius: 12px;
-    background: var(--card-surface);
-    box-shadow: var(--shadow);
+    border-radius: 16px;
+    background: var(--color-surface-elevated);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.24);
+    transform: translateX(-50%);
+    animation: mobile-menu-enter 150ms ease-out both;
+  }
+
+  .mobile-navigation-menu-heading {
+    padding: 7px 12px 9px;
+    color: var(--ink-muted);
+    font-size: 10px;
+    font-weight: 750;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
   }
 
   .mobile-navigation-menu-link {
     display: flex;
     align-items: center;
-    min-height: 44px;
-    padding: 8px 12px;
+    gap: 10px;
+    min-height: 48px;
+    padding: 10px 12px;
     border: 0;
     border-radius: 8px;
     background: transparent;
     color: var(--ink);
     font: inherit;
-    font-size: 13px;
+    font-size: 14px;
     text-align: left;
     cursor: pointer;
+  }
+
+  .mobile-navigation-menu-link .mobile-navigation-icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .mobile-navigation-menu-signout {
+    margin-top: 4px;
+    border-top: 1px solid var(--border);
+    border-radius: 0 0 8px 8px;
   }
 
   .mobile-navigation-menu-link.active,
@@ -938,6 +1008,26 @@ body.dark-theme .auth-submit {
 
   html {
     scroll-padding-bottom: calc(96px + env(safe-area-inset-bottom));
+  }
+}
+
+@keyframes mobile-menu-enter {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 5px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mobile-navigation-link,
+  .mobile-navigation-label,
+  .mobile-navigation-menu {
+    transition: none;
+    animation: none;
   }
 }
 
@@ -1010,8 +1100,6 @@ body.dark-theme .auth-submit {
   .calendar-nav-button,
   .exam-date,
   .exam-meta span,
-  .learning-tabs,
-  .learning-tabs button.active,
   .learning-task:hover,
   .diary-entry,
   .diary-progress-item,
@@ -1255,8 +1343,6 @@ body.dark-theme .main-content :is(
   .calendar-task-dot,
   .exam-date,
   .exam-meta span,
-  .learning-tabs,
-  .learning-tabs button.active,
   .learning-task:hover,
   .settings-toggle,
   .work-item.completed,
@@ -1275,8 +1361,6 @@ body.dark-theme .main-content :is(
 }
 
 body.dark-theme .main-content :is(
-  .learning-tabs,
-  .learning-tabs button,
   .exam-actions button,
   .result-row > button,
   .exam-modal-header > button,
@@ -1290,7 +1374,6 @@ body.dark-theme .main-content :is(
 }
 
 body.dark-theme .main-content :is(
-  .learning-tabs button:hover,
   .exam-actions button:hover,
   .result-row > button:hover,
   .exam-form-actions button:hover,
@@ -1298,10 +1381,6 @@ body.dark-theme .main-content :is(
   .calendar-navigation button:hover
 ) {
   background-color: var(--surface-muted);
-}
-
-body.dark-theme .main-content .learning-tabs button.active {
-  color: var(--ink-strong);
 }
 
 body.dark-theme .main-content .board-status-dot.in_progress {

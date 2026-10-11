@@ -215,7 +215,7 @@
 .calendar-schedule-item.exam,
 .calendar-agenda-item.exam .calendar-agenda-marker,
 .calendar-upcoming-item.exam .calendar-agenda-marker {
-  --event-color: var(--color-warning);
+  --event-color: var(--calendar-event-exam);
 }
 
 .calendar-legend-dot.learning,
@@ -231,7 +231,7 @@
 .calendar-schedule-item.holiday,
 .calendar-agenda-item.holiday .calendar-agenda-marker,
 .calendar-upcoming-item.holiday .calendar-agenda-marker {
-  --event-color: var(--color-chart-4);
+  --event-color: var(--calendar-event-holiday);
 }
 
 .calendar-legend-dot.assignment,

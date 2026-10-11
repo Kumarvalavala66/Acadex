@@ -182,12 +182,13 @@ export default function Board() {
         <div className="board-filter">
           <RubberSegment
             items={FILTERS}
+            ariaLabel="Filter tasks"
             defaultValue={filter}
             onChange={setFilter}
-            trackColor="#272925"
-            thumbColor="#f4f1ea"
-            textColor="#f4f1ea"
-            activeTextColor="#20221f"
+            trackColor="var(--segment-track)"
+            thumbColor="var(--segment-thumb)"
+            textColor="var(--segment-text)"
+            activeTextColor="var(--segment-active-text)"
             size="md"
             radius={10}
             inset={3}

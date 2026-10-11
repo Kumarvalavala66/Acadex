@@ -5,6 +5,7 @@ export default function RubberSegment({
   items = [],
   defaultValue,
   onChange,
+  ariaLabel = "Options",
 
   trackColor = "#27272a",
   thumbColor = "#fafafa",
@@ -62,6 +63,22 @@ export default function RubberSegment({
     if (onChange) {
       onChange(items[safeIndex], safeIndex);
     }
+  }
+
+  function handleItemKeyDown(event, index) {
+    const direction = {
+      ArrowRight: 1,
+      ArrowDown: 1,
+      ArrowLeft: -1,
+      ArrowUp: -1,
+    }[event.key];
+
+    if (direction === undefined) return;
+
+    event.preventDefault();
+    const nextIndex = (index + direction + items.length) % items.length;
+    selectIndex(nextIndex);
+    ref.current?.querySelectorAll("button")[nextIndex]?.focus();
   }
 
   /*
@@ -135,6 +152,8 @@ export default function RubberSegment({
       className={`rubber-segment rubber-${size} ${
         dragging ? "is-dragging" : ""
       }`}
+      role="group"
+      aria-label={ariaLabel}
       style={{
         "--track": trackColor,
         "--thumb": thumbColor,
@@ -180,6 +199,8 @@ export default function RubberSegment({
           className={
             index === activeIndex ? "rubber-item active" : "rubber-item"
           }
+          aria-pressed={index === activeIndex}
+          onKeyDown={(event) => handleItemKeyDown(event, index)}
           onClick={() => selectIndex(index)}
           style={{
             color: index === activeIndex ? activeTextColor : textColor,

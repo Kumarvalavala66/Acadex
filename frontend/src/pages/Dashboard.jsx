@@ -262,12 +262,13 @@ export default function Dashboard() {
         <div className="period-control">
           <RubberSegment
             items={["Day", "Week", "Month", "Year"]}
+            ariaLabel="Dashboard period"
             defaultValue={period}
             onChange={(value) => setPeriod(value)}
-            trackColor="#27272a"
-            thumbColor="#fafafa"
-            textColor="#fafafa"
-            activeTextColor="#18181b"
+            trackColor="var(--segment-track)"
+            thumbColor="var(--segment-thumb)"
+            textColor="var(--segment-text)"
+            activeTextColor="var(--segment-active-text)"
             size="md"
             radius={10}
             inset={3}
