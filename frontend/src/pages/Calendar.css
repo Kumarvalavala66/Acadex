@@ -1285,7 +1285,7 @@ body.dark-theme .main-content .calendar-page .calendar-day.today .calendar-day-n
 
 .calendar-date-rail .calendar-day.selected .calendar-day-number {
   background: transparent;
-  color: var(--button-text);
+  color: var(--ink-strong);
   outline: 0;
 }
 

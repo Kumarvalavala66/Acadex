@@ -69,7 +69,7 @@ export default function Register() {
               type="text"
               value={name}
               onChange={(event) => setName(event.target.value)}
-              placeholder="Prasann"
+              placeholder="Enter your name"
               autoComplete="name"
               required
             />
@@ -82,7 +82,7 @@ export default function Register() {
               type="text"
               value={username}
               onChange={(event) => setUsername(event.target.value)}
-              placeholder="prasann2"
+              placeholder="Choose a username"
               autoComplete="username"
               required
             />
@@ -118,11 +118,6 @@ export default function Register() {
               <option value="Other">Other</option>
             </select>
           </label>
-
-          <p className="device-helper">
-            Device preference is currently captured on the frontend only; backend
-            persistence requires a separate API update.
-          </p>
 
           {error && <div className="auth-error">{error}</div>}
 

@@ -85,7 +85,7 @@ export default function Login() {
               type="text"
               value={formData.username}
               onChange={handleChange}
-              placeholder="Enter your username"
+              placeholder="Username"
               required
             />
           </div>
@@ -99,7 +99,7 @@ export default function Login() {
               type="password"
               value={formData.password}
               onChange={handleChange}
-              placeholder="Enter your password"
+              placeholder="Password"
               required
             />
           </div>
