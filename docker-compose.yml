@@ -6,6 +6,10 @@ services:
       - "8000:8000"
     volumes:
       - ./backend:/app
+    environment:
+      DATABASE_URL: "postgresql+psycopg://acadex_app:DIOR@host.docker.internal:5432/acadex"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     restart: unless-stopped
 
   frontend:
@@ -14,7 +18,7 @@ services:
     ports:
       - "5173:5173"
     environment:
-      VITE_API_BASE_URL: http://127.0.0.1:8000
+      VITE_API_BASE_URL: "http://127.0.0.1:8000"
     volumes:
       - ./frontend:/app
       - /app/node_modules
