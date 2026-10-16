@@ -7,7 +7,7 @@ services:
     volumes:
       - ./backend:/app
     environment:
-      DATABASE_URL: "postgresql+psycopg://acadex_app:DIOR@host.docker.internal:5432/acadex"
+      DATABASE_URL: ${DATABASE_URL}
     extra_hosts:
       - "host.docker.internal:host-gateway"
     restart: unless-stopped
